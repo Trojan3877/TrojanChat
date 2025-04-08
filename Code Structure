@@ -1,0 +1,21 @@
+TrojanChat/
+│
+├── README.md
+├── LICENSE
+├── Makefile (optional)
+│
+├── src/
+│   ├── main.cpp
+│   ├── User.h
+│   ├── User.cpp
+│   ├── ChatRoom.h
+│   ├── ChatRoom.cpp
+│   ├── Message.h
+│   ├── Message.cpp
+│   └── AppController.cpp / .h
+│
+├── data/
+│   └── chatlog.txt (generated later)
+│
+└── docs/
+    └── architecture_diagram.png (to be added later)
