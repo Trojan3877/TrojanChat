@@ -1,0 +1,11 @@
+/backend
+  ├── /controllers
+  │     └── exampleController.js
+  ├── /models
+  │     └── exampleModel.js
+  ├── /routes
+  │     └── exampleRoutes.js
+  ├── /middleware
+  │     └── authMiddleware.js
+  ├── app.js
+  └── server.js
