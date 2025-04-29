@@ -1,0 +1,37 @@
+// trojan_chat.cpp
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main() {
+    vector<string> chatLog;
+    string input;
+
+    cout << "=== Trojan Chat 🛡️ (C++ Console Edition) ===" << endl;
+    cout << "Type 'exit' to leave the chat." << endl;
+
+    while (true) {
+        cout << "You: ";
+        getline(cin, input);
+
+        if (input == "exit") break;
+
+        chatLog.push_back("You: " + input);
+
+        // Simulated response
+        string response = "TrojanBot: Got it!";
+        chatLog.push_back(response);
+
+        // Display chat log
+        cout << "\n--- Chat Log ---\n";
+        for (const string& msg : chatLog) {
+            cout << msg << endl;
+        }
+        cout << "----------------\n";
+    }
+
+    cout << "Exiting Trojan Chat. Goodbye!\n";
+    return 0;
+}
