@@ -1,7 +1,7 @@
 # TrojanChat
 # 🏈 TrojanChat
 
-TrojanChat is a modular C++ terminal-based chat app designed for USC football fans to talk recruiting, coaching changes, and game-day hype. This is a system design project built with future integration into Firebase and mobile platforms in mind.
+TrojanChat is a mixture of Java script, HTML, CSS and C++  terminal-based chat app designed for USC football fans to talk recruiting, coaching changes, and game-day hype. This is a system design project built with future integration into Firebase and mobile platforms in mind.
 
 ## 🔧 Features (v1.0)
 - User registration and login
