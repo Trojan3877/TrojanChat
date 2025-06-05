@@ -10,24 +10,13 @@
 
 ## Overview
 
-**TrojanChat** is a fullstack chat application designed for sports fans, built using:
-✅ Frontend (HTML/CSS/JavaScript)  
-✅ Backend API  
-✅ LocalStorage persistence  
-
----
-
-## Business Impact
-
-Demonstrates:
-- **Fullstack application development**  
-- **Realtime UI interactions**  
-- **Cross-browser support**  
-
-TrojanChat is a platform concept for:
-- Niche fan communities  
-- Sports engagement apps  
-- Scalable social features  
+**TrojanChat** is a full-stack, real-time chat application featuring:
+- **User authentication** (JWT-based)
+- **Multiple chat rooms**
+- **Real-time messaging** via Socket.io
+- **Persistent message storage** in MongoDB
+- **Responsive frontend** using vanilla JavaScript, HTML & CSS
+- **Dockerized deployment** with Docker Compose
 
 ---
 
@@ -35,33 +24,28 @@ TrojanChat is a platform concept for:
 
 ![Architecture Diagram](docs/architecture.png)
 
----
+1. **Frontend**  
+   - `client/index.html`, `client/app.js`, `client/style.css`
+   - Connects to backend via Socket.io with JWT authentication
 
-## Key Features
+2. **Backend**  
+   - `server/index.js` (Express + Socket.io)
+   - `server/models/User.js` (User schema)
+   - `server/models/Message.js` (Message schema)
+   - `server/auth.js` (Register/Login routes)
+   - JWT middleware protects socket connections
 
-- Real-time message updates  
-- Local persistence  
-- Responsive UI  
-- Modular frontend architecture  
+3. **Database**  
+   - MongoDB stores user accounts and chat messages
 
----
-
-## Tech Stack
-
-- JavaScript (ES6)  
-- HTML/CSS  
-- LocalStorage  
-
----
-
-## Future Work
-
-- Add backend (Node.js + WebSocket)  
-- Cloud deploy (Firebase / AWS Amplify)  
-- Mobile-first UI  
+4. **Deployment**  
+   - Docker Compose brings up MongoDB, backend, and frontend containers
 
 ---
 
-## License
+## Getting Started (Local Development)
 
-MIT License
+1. **Clone the repo**  
+   ```bash
+   git clone https://github.com/Trojan3877/TrojanChat.git
+   cd TrojanChat
