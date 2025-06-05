@@ -11,3 +11,13 @@ npm run dev             # uses nodemon
 cd ../client
 npm install             # if using live-server
 npm run start           # opens http://localhost:3000
+
+cd mobile
+npm install
+npx react-native start      # starts Metro bundler
+npx react-native run-android  # builds & installs on emulator
+
+cd mobile
+npm run build:android
+
+docker-compose up --build
