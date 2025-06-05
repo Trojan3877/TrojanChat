@@ -1,3 +1,11 @@
+![MIT License](https://img.shields.io/badge/license-MIT-green.svg)
+![GitHub repo stars](https://img.shields.io/github/stars/Trojan3877/TrojanChat?style=social)
+![GitHub forks](https://img.shields.io/github/forks/Trojan3877/TrojanChat?style=social)
+![Build passing](https://img.shields.io/github/actions/workflow/status/Trojan3877/TrojanChat/ci.yml?branch=main)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
+
+
+
 # TrojanChat
 # 🏈 TrojanChat
 
