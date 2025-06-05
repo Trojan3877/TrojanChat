@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        working-directory: ./server
+        run: npm ci
+
+      - name: Run backend tests
+        working-directory: ./server
+        env:
+          MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET_TEST }}
+        run: npm test
+
+  # (You can add a frontend job later to lint/build the client if desired)
