@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TrojanChat</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.socket.io/4.7.1/socket.io.min.js"></script>
+</head>
+<body>
+  <div id="chat-container">
+    <header>
+      <h1>TrojanChat</h1>
+      <button id="logoutBtn">Logout</button>
+    </header>
+    <div id="room-selection">
+      <label for="room">Choose a room:</label>
+      <select id="room">
+        <option value="General">General</option>
+        <option value="USCFootball">USCFootball</option>
+        <option value="Sports">Sports</option>
+      </select>
+      <button id="joinRoomBtn">Join Room</button>
+    </div>
+    <div id="chat-window">
+      <ul id="messages"></ul>
+    </div>
+    <form id="message-form">
+      <input id="message-input" autocomplete="off" placeholder="Type a message…" required />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
