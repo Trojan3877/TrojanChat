@@ -1,0 +1,13 @@
+# Start MongoDB (locally or via Docker)
+mongod --dbpath /path/to/your/db
+
+# Run server
+cd server
+npm install
+cp .env.example .env   # fill in MONGO_URI + JWT_SECRET
+npm run dev             # uses nodemon
+
+# Run client
+cd ../client
+npm install             # if using live-server
+npm run start           # opens http://localhost:3000
