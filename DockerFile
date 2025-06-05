@@ -1,3 +1,43 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:6
+    container_name: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+
+  server:
+    build: ./server
+    container_name: trojanchat_server
+    env_file: ./server/.env
+    ports:
+      - '5000:5000'
+    depends_on:
+      - mongodb
+
+  frontend:
+    image: nginx:alpine
+    container_name: trojanchat_frontend
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html
+      - ./app.js:/usr/share/nginx/html/app.js
+      - ./style.css:/usr/share/nginx/html/style.css
+    ports:
+      - '80:80'
+    depends_on:
+      - server
+
+volumes:
+  mongo_data:
+
+
+
+
+
+
+
 # server/Dockerfile
 FROM node:18-alpine
 WORKDIR /usr/src/app
