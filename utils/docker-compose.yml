@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: trojanchat_mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+
+  server:
+    build: ./server
+    container_name: trojanchat_server
+    env_file: ./server/.env
+    ports:
+      - '5000:5000'
+    depends_on:
+      - mongo
+
+  frontend:
+    image: nginx:alpine
+    container_name: trojanchat_frontend
+    volumes:
+      - ./client/index.html:/usr/share/nginx/html/index.html
+      - ./client/app.js:/usr/share/nginx/html/app.js
+      - ./client/style.css:/usr/share/nginx/html/style.css
+      - ./client/login.html:/usr/share/nginx/html/login.html
+      - ./client/register.html:/usr/share/nginx/html/register.html
+    ports:
+      - '80:80'
+    depends_on:
+      - server
+
+volumes:
+  mongo_data:
