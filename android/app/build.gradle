@@ -1,0 +1,27 @@
+// mobile/android/app/build.gradle
+
+android {
+    ...
+    defaultConfig {
+        applicationId "com.trojanchatmobile"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    signingConfigs {
+        release {
+            keyAlias 'trojanchat'
+            keyPassword 'YOUR_KEY_PASSWORD'
+            storeFile file('trojanchat-release.keystore')
+            storePassword 'YOUR_KEYSTORE_PASSWORD'
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
