@@ -1,0 +1,9 @@
+TrojanChat-Android/settings.gradle
+
+rootProject.name = "TrojanChat-Android"
+include ":app"
+
+// TrojanChat-Android/settings.gradle
+
+rootProject.name = "TrojanChat-Android"
+include ":app"
