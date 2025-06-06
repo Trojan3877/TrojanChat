@@ -1,3 +1,4 @@
+https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-1fa8-61f7-a78f-ff9fcd56ab9b/raw?se=2025-06-06T03%3A00%3A30Z&sp=r&sv=2024-08-04&sr=b&scid=ae05e7d3-aab3-5b1e-9f6c-b35edf604e39&skoid=ec8eb293-a61a-47e0-abd0-6051cc94b050&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-06T02%3A41%3A38Z&ske=2025-06-07T02%3A41%3A38Z&sks=b&skv=2024-08-04&sig=s76rmuWXJX9/M/IDyn28JXhaV/stC7MXJh8hoS82XeU%3D
 
 > Adjust the Docker Compose commands/acronyms if you place `server` and `client` at different relative paths.
 
