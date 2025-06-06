@@ -1,35 +1,42 @@
+# Trojan Chat
 
-
-> Adjust the Docker Compose commands/acronyms if you place `server` and `client` at different relative paths.
+![Last Commit](https://img.shields.io/github/last-commit/Trojan3877/TrojanChat)  
+![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)  
+![Platform: Android](https://img.shields.io/badge/platform-Android-brightgreen.svg)  
+![Kotlin](https://img.shields.io/badge/kotlin-1.7.10-purple.svg)  
+![Ktor](https://img.shields.io/badge/ktor-2.3.0-blue.svg)  
+![Gradle](https://img.shields.io/badge/gradle-7.0-blue.svg)
 
 ---
 
-### 🚀 How to Integrate These Files:
+## 🚀 Android Frontend
 
-1. **Create a new `server/` directory** in your repo and add:
-   - `index.js`
-   - `models/Message.js`
-   - `models/User.js`
-   - `auth.js`
-   - `.env.example`
-   - `Dockerfile`
-   - `package.json`
-   - (optional) `tests/` subfolder with `auth.test.js`
-2. **Create a new `client/` directory** (or rename your existing front-end folder to `client/`) and add:
-   - `index.html`
-   - `app.js`
-   - `style.css`
-   - `Dockerfile`
-   - `package.json` (optional)
-3. Add `docker-compose.yml` at the repository root.
-4. **Populate environment variables** in `/server/.env` (copy `.env.example` → `.env`).
-5. **Install dependencies**:
-   ```bash
-   cd server
-   npm install
-   cd ../client
-   npm install  # if using live-server for local dev
+The Android client uses Kotlin + OkHttp for WebSocket communication.
 
+### Prerequisites
+- Android Studio Flamingo or later
+- Android SDK 33
+
+### Setup & Run
+1. Open `TrojanChat-Android` in Android Studio.  
+2. Sync Gradle.  
+3. Run the `app` module on an emulator or device.  
+4. Chat messages will be sent to/received from `ws://10.0.2.2:8080/chat`.  
+
+---
+
+## ⚙️ Kotlin Backend
+
+The server is built with Ktor and handles WebSocket connections on port 8080.
+
+### Prerequisites
+- JDK 17+  
+- Gradle 7+
+
+### Setup & Run
+```bash
+cd TrojanChatServerKotlin
+./gradlew run
 
 
 
