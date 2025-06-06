@@ -1,0 +1,76 @@
+// swift-tools-version:5.5
+import PackageDescription
+
+let package = Package(
+    name: "TrojanChatServer",
+    platforms: [.macOS(.v12)],
+    dependencies: [
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
+    ],
+    targets: [
+        .executableTarget(name: "Run", dependencies: [
+            .target(name: "App")
+        ]),
+        .target(name: "App", dependencies: [
+            .product(name: "Vapor", package: "vapor")
+        ]),
+    ]
+)
+
+import App
+import Vapor
+
+var env = try Environment.detect()
+let app = Application(env)
+defer { app.shutdown() }
+try configure(app)
+try app.run()
+
+import Vapor
+
+public func configure(_ app: Application) throws {
+    // Serve files from /Public if needed
+    app.middleware.use(FileMiddleware(publicDirectory: "Public"))
+    try routes(app)
+}
+
+import Vapor
+
+func routes(_ app: Application) throws {
+    let chatController = ChatController()
+    try app.webSocket("chat", onUpgrade: chatController.handle)
+}
+
+import Vapor
+
+final class ChatController {
+    private var connections: [WebSocket] = []
+
+    func handle(req: Request, ws: WebSocket) {
+        // Add new connection
+        connections.append(ws)
+        // Remove on close
+        ws.onClose.whenComplete { [weak self] _ in
+            self?.connections.removeAll { $0 === ws }
+        }
+        // Broadcast incoming text
+        ws.onText { [weak self] _, text in
+            self?.broadcast(text)
+        }
+    }
+
+    private func broadcast(_ string: String) {
+        for conn in connections {
+            conn.send(string)
+        }
+    }
+}
+
+import Foundation
+
+struct Message: Codable {
+    let id: UUID
+    let sender: String
+    let content: String
+    let timestamp: Date
+}
