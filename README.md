@@ -1,3 +1,9 @@
+![Uploading image.png…]()
+
+
+
+
+
 # Trojan Chat
 
 ![Last Commit](https://img.shields.io/github/last-commit/Trojan3877/TrojanChat)  
