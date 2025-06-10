@@ -1,0 +1,13 @@
+# Sample override for testing
+replicaCount: 3
+image:
+  repository: trojan3877/trojanchat
+  tag: v1.2.3
+service:
+  type: LoadBalancer
+  port: 80
+ingress:
+  enabled: true
+  className: nginx
+  host: example.com
+  tls: true
