@@ -1,0 +1,35 @@
+# TrojanChat/fastlane/Fastfile
+
+default_platform(:ios)
+
+platform :android do
+  desc "CI Android build"
+  lane :ci do
+    gradle(task: "clean assembleDebug")
+    # Optionally run unit tests:
+    # gradle(task: "testDebugUnitTest")
+    # Upload APK to storage or distribution service if needed
+  end
+end
+
+platform :ios do
+  desc "CI iOS build"
+  lane :ci do
+    cocoapods
+    build_app(
+      scheme: "TrojanChat",
+      workspace: "TrojanChat.xcworkspace",
+      configuration: "Debug",
+      clean: true
+    )
+    # Optionally run tests:
+    # scan(scheme: "TrojanChatTests")
+    # Upload IPA to TestFlight or storage if needed
+  end
+end
+
+
+mkdir -p TrojanChat/fastlane
+git add TrojanChat/fastlane/Fastfile
+git commit -m "Add Fastlane Fastfile with Android and iOS CI lanes"
+git push
