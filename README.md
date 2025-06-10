@@ -1,17 +1,17 @@
 ![Uploading image.png…]()
 
 
-
-````markdown
 # TrojanChat 🚀
 
 ![Capstone](https://img.shields.io/badge/Capstone-Complete-brightgreen.svg)
-![Built%20By](https://img.shields.io/badge/Built%20By-Trojan3877-blue.svg)
-![Mobile CI](https://github.com/Trojan3877/TrojanChat/actions/workflows/mobile-ci.yml/badge.svg)
-![CI](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg)
-![Helm](https://img.shields.io/badge/Helm–Chart-orange)
-![K8s](https://img.shields.io/badge/Kubernetes-ready-green)
+![Built By](https://img.shields.io/badge/Built%20By-Trojan3877-blue.svg)
+![Mobile CI](https://github.com/Trojan3877/TrojanChat/actions/workflows/mobile-ci.yml/badge.svg?branch=main)
+![CI](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg?branch=main)
+![CodeQL](https://github.com/Trojan3877/TrojanChat/actions/workflows/codeql.yml/badge.svg?branch=main)
+![DVC](https://img.shields.io/badge/DVC-enabled-blue)
 ![Docker](https://img.shields.io/docker/pulls/trojan3877/trojanchat-service)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-ready-green)
+![Helm](https://img.shields.io/badge/Helm–Chart-orange)
 ![Ansible](https://img.shields.io/badge/Ansible-automated-yellowgreen)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
@@ -51,33 +51,15 @@ cd TrojanChat
 cp .env.example .env 
 scripts/setup_local.sh
 
-# Mobile CI (Android/iOS)
-# No local action required—CI runs on push
-
 # Run backend & frontend
 docker-compose up -d
 
 # K8s deploy (dev)
 kubectl apply -f k8s/
 helm upgrade --install trojanchat helm/trojanchat
-````
 
----
-
-## Architecture
-
-![TrojanChat Architecture](https://raw.githubusercontent.com/Trojan3877/TrojanChat/main/docs/architecture.png)
-
----
-
-*Developed, designed, and owned by Corey “Trojan3877” Leath—my original idea and creation.*
-*Connect: [corey22blue@hotmail.com](mailto:corey22blue@hotmail.com) | [LinkedIn](https://linkedin.com/in/your-profile)*
-
-```
-```
-
-
-
+# Full prod deploy
+make deploy
 
 
 
