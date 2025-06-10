@@ -1,31 +1,14 @@
-name: CI
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  backend:
+   helm-unittest:
+    name: Helm Unittest
     runs-on: ubuntu-latest
+    needs: lint-and-test
     steps:
       - uses: actions/checkout@v3
+      - name: Set up Helm unittest plugin
+        run: helm plugin install https://github.com/quintush/helm-unittest
+      - name: Run Helm tests
+        run: helm unittest helm/trojanchat
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Install dependencies
-        working-directory: ./server
-        run: npm ci
-
-      - name: Run backend tests
-        working-directory: ./server
-        env:
-          MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET_TEST }}
-        run: npm test
-
-  # (You can add a frontend job later to lint/build the client if desired)
+git add helm/trojanchat/tests
+git commit -m "Add Helm unittest tests for TrojanChat chart"
+git push
