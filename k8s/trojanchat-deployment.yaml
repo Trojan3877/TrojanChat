@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trojanchat-service
+  labels:
+    app: trojanchat
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: trojanchat
+  template:
+    metadata:
+      labels:
+        app: trojanchat
+    spec:
+      containers:
+        - name: trojanchat
+          image: your-docker-registry/trojanchat-service:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: FIREBASE_SERVICE_ACCOUNT
+              value: "/etc/secrets/serviceAccountKey.json"
+          volumeMounts:
+            - name: firebase-creds
+              mountPath: /etc/secrets
+      volumes:
+        - name: firebase-creds
+          secret:
+            secretName: trojanchat-firebase
