@@ -3,19 +3,41 @@
 
 # TrojanChat 🚀
 
-![Capstone](https://img.shields.io/badge/Capstone-Complete-brightgreen.svg)
-![Built By](https://img.shields.io/badge/Built%20By-Trojan3877-blue.svg)
-![Mobile CI](https://github.com/Trojan3877/TrojanChat/actions/workflows/mobile-ci.yml/badge.svg?branch=main)
-![CI](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg?branch=main)
-![CodeQL](https://github.com/Trojan3877/TrojanChat/actions/workflows/codeql.yml/badge.svg?branch=main)
-![DVC](https://img.shields.io/badge/DVC-enabled-blue)
-![Docker](https://img.shields.io/docker/pulls/trojan3877/trojanchat-service)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-ready-green)
-![Helm](https://img.shields.io/badge/Helm–Chart-orange)
-![Ansible](https://img.shields.io/badge/Ansible-automated-yellowgreen)
-![License](https://img.shields.io/badge/license-MIT-green)
+![C++](https://img.shields.io/badge/C++-17-blue.svg)
+![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)
+![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows-lightgrey.svg)
+![Contributions](https://img.shields.io/badge/contributions-welcome-orange.svg)
+![Issues](https://img.shields.io/github/issues/Trojan3877/TrojanChat)
+![Last Commit](https://img.shields.io/github/last-commit/Trojan3877/TrojanChat)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-**TrojanChat** is **my baby**—a real-time chat platform for USC fans, built entirely from my own idea and code. This project showcases:
+
+C++ terminal-based chat app for USC fans with modular architecture and real-time messaging.
+
+Tech Stack
+![C++](https://img.shields.io/badge/C%2B%2B-Modern-red)
+![JWT](https://img.shields.io/badge/JWT-Auth-blue)
+![Docker](https://img.shields.io/badge/Docker-enabled-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+##  Quickstart
+```bash
+git clone https://github.com/Trojan3877/TrojanChat.git
+cd TrojanChat
+# For terminal frontend
+cd CPP
+g++ main.cpp -o trojanchat && ./trojanchat
+
+Architecture
+flowchart TD
+  Client Terminal ← WebSocket → Server Backend
+
+
+##  Overview
+- **Purpose:** Real-time chat platform for USC football fans.
+- **Core Value:** Lightweight, efficient, and modular design.
+- **Why It Matters:** Demonstrates OOP, cross-platform deployment, and real-time backend logic.
+
 
 1. **Cross-Platform Mobile**  
    - Android & iOS with React Native  
@@ -62,6 +84,12 @@ helm upgrade --install trojanchat helm/trojanchat
 make deploy
 
 
+├── CPP/
+├── backend/
+├── android/
+├── server/
+├── client/
+└── README.md
 
 
 
