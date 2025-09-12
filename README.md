@@ -28,16 +28,6 @@ Now fully **MCP-compatible** and **n8n automation-ready** for smart integrations
 A real-time chat application for **USC Trojan fans** to discuss games, recruiting, and staff updates.  
 Now fully **MCP-compatible** and **n8n automation-ready** for smart integrations with AI agents and workflows.
 
----
-
-## 🔹 Features
-- ✅ Create and join themed rooms (game-day, recruiting, staff)  
-- ✅ Post & fetch chat messages  
-- ✅ AI Agent (MCP) support for structured access  
-- ✅ n8n workflows for Slack alerts & Google Sheets logging  
-- ✅ Ready for containerization (Docker support)  
-
----
 
 ## 🔹 Project Structure
 ├── mcp_config.json # MCP tool definitions
@@ -61,6 +51,7 @@ flowchart TD
   Client Terminal ← WebSocket → Server Backend
 
 <img width="1979" height="1180" alt="image" src="https://github.com/user-attachments/assets/cfe9c727-e9d9-437f-b0e9-75b23d81ef00" />
+
 
 
 
