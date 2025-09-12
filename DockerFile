@@ -1,48 +1,30 @@
-version: '3.8'
-services:
-  mongodb:
-    image: mongo:6
-    container_name: mongo
-    ports:
-      - '27017:27017'
-    volumes:
-      - mongo_data:/data/db
+# Use lightweight Python base image
+FROM python:3.10-slim
 
-  server:
-    build: ./server
-    container_name: trojanchat_server
-    env_file: ./server/.env
-    ports:
-      - '5000:5000'
-    depends_on:
-      - mongodb
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-  frontend:
-    image: nginx:alpine
-    container_name: trojanchat_frontend
-    volumes:
-      - ./index.html:/usr/share/nginx/html/index.html
-      - ./app.js:/usr/share/nginx/html/app.js
-      - ./style.css:/usr/share/nginx/html/style.css
-    ports:
-      - '80:80'
-    depends_on:
-      - server
+# Set working directory
+WORKDIR /app
 
-volumes:
-  mongo_data:
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
+# Copy requirements first (better caching)
+COPY requirements.txt .
 
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-
-
-
-
-# server/Dockerfile
-FROM node:18-alpine
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install --only=production
+# Copy project files
 COPY . .
+
+# Expose port for Flask
 EXPOSE 5000
-CMD ["node", "index.js"]
+
+# Default command (runs webhook server)
+CMD ["python", "n8n_webhook.py"]
