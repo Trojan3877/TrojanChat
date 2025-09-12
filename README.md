@@ -1,24 +1,32 @@
-![Uploading image.png…]()
+# 🏈 Trojan Chat
 
+[![MCP Ready](https://img.shields.io/badge/MCP-Compatible-blue)](https://modelcontextprotocol.io)
+[![n8n Automation](https://img.shields.io/badge/n8n-Automation-green)](https://n8n.io)
+[![Build Status](https://img.shields.io/badge/CI-CD-orange)](#)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-# TrojanChat 🚀
+A real-time chat application for **USC Trojan fans** to discuss games, recruiting, and staff updates.  
+Now fully **MCP-compatible** and **n8n automation-ready** for smart integrations with AI agents and workflows.
 
-![C++](https://img.shields.io/badge/C++-17-blue.svg)
-![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)
-![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows-lightgrey.svg)
-![Contributions](https://img.shields.io/badge/contributions-welcome-orange.svg)
-![Issues](https://img.shields.io/github/issues/Trojan3877/TrojanChat)
-![Last Commit](https://img.shields.io/github/last-commit/Trojan3877/TrojanChat)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
+---
 
+## 🔹 Features
+- ✅ Create and join themed rooms (game-day, recruiting, staff)  
+- ✅ Post & fetch chat messages  
+- ✅ AI Agent (MCP) support for structured access  
+- ✅ n8n workflows for Slack alerts & Google Sheets logging  
+- ✅ Ready for containerization (Docker support)  
 
-C++ terminal-based chat app for USC fans with modular architecture and real-time messaging.
+---
 
-Tech Stack
-![C++](https://img.shields.io/badge/C%2B%2B-Modern-red)
-![JWT](https://img.shields.io/badge/JWT-Auth-blue)
-![Docker](https://img.shields.io/badge/Docker-enabled-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
+## 🔹 Project Structure
+├── mcp_config.json # MCP tool definitions
+├── mcp_adapter.py # Adapter for MCP requests
+├── n8n_webhook.py # Webhook server for n8n
+├── trojan_chat_workflow.json # Ready-to-import n8n workflow
+├── app/ # (Frontend/Backend chat app code)
+├── requirements.txt # Dependencies
+└── README.md # Documentation
 
 ##  Quickstart
 ```bash
