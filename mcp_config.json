@@ -1,0 +1,50 @@
+{
+  "name": "trojan_chat",
+  "description": "A chat application for USC football fans to discuss games, recruiting, and staff updates.",
+  "version": "1.0.0",
+  "tools": [
+    {
+      "name": "send_message",
+      "description": "Send a chat message to a room or channel.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "room": { "type": "string", "example": "recruiting, game-day, staff" },
+          "user": { "type": "string", "example": "Corey" },
+          "message": { "type": "string", "example": "Fight On! Welcome to the new recruit!" }
+        },
+        "required": ["room", "user", "message"]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string", "enum": ["sent", "failed"] },
+          "timestamp": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    {
+      "name": "fetch_messages",
+      "description": "Fetch recent messages from a chat room.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "room": { "type": "string", "example": "game-day" },
+          "limit": { "type": "integer", "default": 10 }
+        },
+        "required": ["room"]
+      },
+      "output_schema": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "user": { "type": "string" },
+            "message": { "type": "string" },
+            "timestamp": { "type": "string", "format": "date-time" }
+          }
+        }
+      }
+    }
+  ]
+}
