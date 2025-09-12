@@ -40,6 +40,10 @@ Architecture
 flowchart TD
   Client Terminal ← WebSocket → Server Backend
 
+<img width="1979" height="1180" alt="image" src="https://github.com/user-attachments/assets/cfe9c727-e9d9-437f-b0e9-75b23d81ef00" />
+
+
+
 
 ##  Overview
 - **Purpose:** Real-time chat platform for USC football fans.
