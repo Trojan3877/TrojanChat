@@ -1,9 +1,29 @@
 # 🏈 Trojan Chat
 
+
+
 [![MCP Ready](https://img.shields.io/badge/MCP-Compatible-blue)](https://modelcontextprotocol.io)
 [![n8n Automation](https://img.shields.io/badge/n8n-Automation-green)](https://n8n.io)
 [![Build Status](https://img.shields.io/badge/CI-CD-orange)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+A real-time chat application for **USC Trojan fans** to discuss games, recruiting, and staff updates.  
+Now fully **MCP-compatible** and **n8n automation-ready** for smart integrations with AI agents and workflows.
+
+---
+
+## 🔹 Features
+- ✅ Create and join themed rooms (game-day, recruiting, staff)  
+- ✅ Post & fetch chat messages  
+- ✅ AI Agent (MCP) support for structured access  
+- ✅ n8n workflows for Slack alerts & Google Sheets logging  
+- ✅ Docker & CI/CD ready  
+
+---
+
+## 🔹 Project Structure
+
+
 
 A real-time chat application for **USC Trojan fans** to discuss games, recruiting, and staff updates.  
 Now fully **MCP-compatible** and **n8n automation-ready** for smart integrations with AI agents and workflows.
