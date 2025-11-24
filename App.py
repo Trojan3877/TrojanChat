@@ -10,7 +10,6 @@ chat_client = ChatClient()
 ai_agent = LLMAgent()
 moderator = Moderator()
 memory = EmbeddingStore()
-
 class Message(BaseModel):
     user: str
     text: str
