@@ -6,7 +6,7 @@ from ai.moderation import Moderator
 from ai.embeddings import EmbeddingStore
 
 app = FastAPI()
-
+chat_client = ChatClient()
 ai_agent = LLMAgent()
 moderator = Moderator()
 memory = EmbeddingStore()
