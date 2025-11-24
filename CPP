@@ -1,37 +1,26 @@
-// trojan_chat.cpp
-#include <iostream>
-#include <vector>
+#ifndef CHAT_SERVER_HPP
+#define CHAT_SERVER_HPP
+
 #include <string>
+#include <vector>
+#include <thread>
+#include <mutex>
+#include <netinet/in.h>
 
-using namespace std;
+class ChatServer {
+public:
+    ChatServer(int port);
+    void start();
 
-int main() {
-    vector<string> chatLog;
-    string input;
+private:
+    int server_fd;
+    int port;
+    std::vector<int> clients;
+    std::mutex client_mutex;
 
-    cout << "=== Trojan Chat 🛡️ (C++ Console Edition) ===" << endl;
-    cout << "Type 'exit' to leave the chat." << endl;
+    void accept_connections();
+    void handle_client(int client_socket);
+    void broadcast(const std::string& msg, int sender_socket);
+};
 
-    while (true) {
-        cout << "You: ";
-        getline(cin, input);
-
-        if (input == "exit") break;
-
-        chatLog.push_back("You: " + input);
-
-        // Simulated response
-        string response = "TrojanBot: Got it!";
-        chatLog.push_back(response);
-
-        // Display chat log
-        cout << "\n--- Chat Log ---\n";
-        for (const string& msg : chatLog) {
-            cout << msg << endl;
-        }
-        cout << "----------------\n";
-    }
-
-    cout << "Exiting Trojan Chat. Goodbye!\n";
-    return 0;
-}
+#endif
