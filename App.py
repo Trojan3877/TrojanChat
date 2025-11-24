@@ -1,11 +1,29 @@
 from fastapi import FastAPI
-import uvicorn
+from pydantic import BaseModel
+from ai.llm_agent import LLMAgent
+from ai.moderation import Moderator
+from ai.embeddings import EmbeddingStore
 
 app = FastAPI()
 
-@app.get("/health")
-def health():
-    return {"status": "ok"}
+ai_agent = LLMAgent()
+moderator = Moderator()
+memory = EmbeddingStore()
 
-if __name__ == "__main__":
-    uvicorn.run("app:app", host="0.0.0.0", port=8000)
+class Message(BaseModel):
+    user: str
+    text: str
+
+@app.post("/ask_ai")
+def ask_ai(msg: Message):
+    if not moderator.check(msg.text):
+        return {"error": "Message flagged by moderation system."}
+
+    memory.add(msg.text)
+
+    reply = ai_agent.respond(msg.text, msg.user)
+    return {"reply": reply}
+
+@app.post("/similar")
+def similar(msg: Message):
+    return {"matches": memory.search(msg.text)}
