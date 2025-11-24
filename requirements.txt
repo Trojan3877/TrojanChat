@@ -1,11 +1,6 @@
-# Core dependencies
-flask>=2.3.2
 
-# For MCP input/output schema validation
-pydantic>=2.3.0
-
-# For logging and formatting
-rich>=13.4.0
-
-# Optional: requests for testing endpoints
-requests>=2.31.0
+fastapi
+uvicorn
+python-dotenv
+openai
+requests
