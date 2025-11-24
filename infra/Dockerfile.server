@@ -1,0 +1,17 @@
+FROM ubuntu:22.04
+
+RUN apt-get update && apt-get install -y \
+    cmake \
+    g++ \
+    make
+
+WORKDIR /app
+
+COPY backend /app/backend
+
+WORKDIR /app/backend
+RUN mkdir build && cd build && cmake .. && make
+
+EXPOSE 9000
+
+CMD ["./build/chat_server"]
