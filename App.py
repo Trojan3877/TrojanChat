@@ -12,18 +12,7 @@ moderator = Moderator()
 memory = EmbeddingStore()
 class Message(BaseModel):
     user: str
-    text: str
-
-@app.post("/ask_ai")
-def ask_ai(msg: Message):
-    if not moderator.check(msg.text):
-        return {"error": "Message flagged by moderation system."}
-
-    memory.add(msg.text)
-
-    reply = ai_agent.respond(msg.text, msg.user)
-    return {"reply": reply}
-
-@app.post("/similar")
-def similar(msg: Message):
-    return {"matches": memory.search(msg.text)}
+    @app.post("/send")
+def send(msg: Message):
+    result = chat_client.send_message(f"{msg.user}: {msg.text}")
+    return {"status": "sent", "detail": result}
