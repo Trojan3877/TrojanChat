@@ -7,18 +7,26 @@
 [![Build Status](https://img.shields.io/badge/CI-CD-orange)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A real-time chat application for **USC Trojan fans** to discuss games, recruiting, and staff updates.  
-Now fully **MCP-compatible** and **n8n automation-ready** for smart integrations with AI agents and workflows.
+ 
+# TrojanChat — Distributed Real-Time Chat System with AI Agent  
+**Built by Corey Leath | AI/ML Engineer + Software Developer**
+
+TrojanChat is a production-grade, distributed chat system implemented in **C++**, **Python**, **FastAPI**, and **AI LLMs (GPT/Llama)**.  
+This project demonstrates **L5/L6-level engineering skills**, including:
+
+- High-performance C++ TCP chat server  
+- FastAPI gateway with REST endpoints  
+- AI assistant agent that joins chat rooms  
+- Real-time message broadcasting  
+- AI moderation + embeddings  
+- Full Docker & docker-compose setup  
+- Kubernetes deployment manifests  
+- System design diagram  
+- Tests + observability hooks  
 
 ---
 
-## 🔹 Features
-- ✅ Create and join themed rooms (game-day, recruiting, staff)  
-- ✅ Post & fetch chat messages  
-- ✅ AI Agent (MCP) support for structured access  
-- ✅ n8n workflows for Slack alerts & Google Sheets logging  
-- ✅ Docker & CI/CD ready  
-
+## 🏗️ System Architecture (High-Level)
 ---
 
 ## 🔹 Project Structure
