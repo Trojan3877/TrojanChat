@@ -1,21 +1,34 @@
 TrojanChat/
+│── backend/
+│   │── include/
+│   │   └── chat_server.hpp
+│   │── src/
+│   │   └── chat_server.cpp
+│   │── tests/
+│   │   └── test_server.cpp
+│   │── CMakeLists.txt
 │
-├── README.md
-├── LICENSE
-├── Makefile (optional)
+│── api/
+│   │── app.py
+│   │── chat_client.py
+│   │── requirements.txt
 │
-├── src/
-│   ├── main.cpp
-│   ├── User.h
-│   ├── User.cpp
-│   ├── ChatRoom.h
-│   ├── ChatRoom.cpp
-│   ├── Message.h
-│   ├── Message.cpp
-│   └── AppController.cpp / .h
+│── ai/
+│   │── llm_agent.py
+│   │── embeddings.py
+│   │── mcp_server.py
 │
-├── data/
-│   └── chatlog.txt (generated later)
+│── infra/
+│   │── Dockerfile.api
+│   │── Dockerfile.server
+│   │── docker-compose.yml
+│   │── k8s/
+│   │       ├── deployment.yaml
+│   │       ├── service.yaml
 │
-└── docs/
-    └── architecture_diagram.png (to be added later)
+│── diagrams/
+│   │── architecture.png   (placeholder, I will generate next)
+│
+│── .gitignore
+│── LICENSE
+│── README.md
