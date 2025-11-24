@@ -1,3 +1,4 @@
+from api.chat_client import ChatClient
 from fastapi import FastAPI
 from pydantic import BaseModel
 from ai.llm_agent import LLMAgent
