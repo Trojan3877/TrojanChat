@@ -3,6 +3,7 @@
 **Built by Corey Leath — AI/ML Engineer | Software Developer | Distributed Systems**
 
 ---
+/mnt/data/A_GitHub_repository_banner_image_for_TrojanChat_fe.png
 
 # 🔰 Badges
 
