@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  server:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile.server
+    container_name: trojan_chat_server
+    ports:
+      - "9000:9000"
+    networks:
+      - trojan_network
+
+  api:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile.api
+    container_name: trojan_chat_api
+    ports:
+      - "8000:8000"
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    depends_on:
+      - server
+    networks:
+      - trojan_network
+
+networks:
+  trojan_network:
+    driver: bridge
