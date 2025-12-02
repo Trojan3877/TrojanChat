@@ -1,19 +1,32 @@
----
+# =============================================
+# TROJANCHAT — PRODUCTION FASTAPI DOCKERFILE
+# =============================================
 
-# 🔨 **4. CMakeLists.txt (for backend C++ server)**
+# Use a lightweight Python base image
+FROM python:3.11-slim
 
-```cmake
-cmake_minimum_required(VERSION 3.10)
-project(TrojanChatServer)
+# Prevent Python from buffering logs
+ENV PYTHONUNBUFFERED=1
 
-set(CMAKE_CXX_STANDARD 17)
+# Set working directory
+WORKDIR /app
 
-include_directories(include)
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-add_executable(chat_server
-    src/chat_server.cpp
-)
+# Copy dependency file
+COPY backend/requirements.txt /app/requirements.txt
 
-enable_testing()
-add_executable(test_server tests/test_server.cpp)
-add_test(NAME server_tests COMMAND test_server)
+# Install backend Python packages
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+# Copy backend source code
+COPY backend /app/backend
+
+# Expose FastAPI port
+EXPOSE 8000
+
+# Start FastAPI with Uvicorn
+CMD ["uvicorn", "backend.api:app", "--host", "0.0.0.0", "--port", "8000"]
