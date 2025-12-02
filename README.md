@@ -1,51 +1,105 @@
-# 🏈 TrojanChat  
-### Distributed Real-Time Chat System + AI Agent  
-**Built by Corey Leath — AI/ML Engineer | Software Developer | Distributed Systems**
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Trojan3877/assets/main/trojanchat_banner_dark.png" width="100%" />
+</p>
 
----
-/mnt/data/A_GitHub_repository_banner_image_for_TrojanChat_fe.png
-
-# 🔰 Badges
-
-![Python](https://img.shields.io/badge/Python-3.11-blue)
-![C++](https://img.shields.io/badge/C++-17-red)
-![FastAPI](https://img.shields.io/badge/FastAPI-API-green)
-![OpenAI](https://img.shields.io/badge/OpenAI-GPT_4.1/5.1-purple)
-![LLaMA](https://img.shields.io/badge/LLaMA-3-orange)
-![Docker](https://img.shields.io/badge/Docker-Containers-blue)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-K8s-informational)
-![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-black)
-![TCP](https://img.shields.io/badge/Networking-TCP_Sockets-yellow)
-![License](https://img.shields.io/badge/License-MIT-lightgrey)
+<h1 align="center">TrojanChat</h1>
+<p align="center">A cross-platform, real-time chat application built for USC fans (and scalable for production use).</p>
 
 ---
 
-# 📌 Overview
+# 🚀 Overview
 
-**TrojanChat** is a distributed, production-grade chat system that combines:
+**TrojanChat** is a multi-platform real-time chat application designed to let USC football fans connect, discuss recruiting, games, staff changes, and more.  
+The project is built with production readiness in mind, including:
 
-- **A high-performance C++ TCP chat server**
-- **A FastAPI microservice gateway**
-- **A fully powered AI agent (GPT-4.1 / GPT-5.1 / LLaMA 3)**
-- **Toxicity moderation + embeddings memory**
-- **Containerized deployment (Docker + docker-compose)**
-- **Kubernetes-ready manifests (L6 professional quality)**
-
-This project demonstrates **L5/L6-level engineering skill**, integrating:
-
-✔ Systems programming (C++)  
-✔ Distributed networking (TCP)  
-✔ API gateway architecture  
-✔ AI/ML engineering  
-✔ DevOps + deployment  
-✔ Metrics + observability  
-✔ System design  
+- Multi-platform client support (Web, Terminal, Android, iOS, Desktop)
+- Modular backend API
+- Real-time messaging layer (Firebase or socket-ready)
+- Scalable architecture for future growth
+- Clean, documented code
+- Big Tech–style engineering practices
 
 ---
 
-# 🧱 High-Level Architecture
+# 🛠 Tech Stack
 
+**Backend:**
+- Python / FastAPI or Node.js (future upgrade)
+- WebSockets / Firebase Realtime Database (chooseable)
+- RESTful API (expandable)
 
+**Frontend Clients:**
+- Web (HTML/JS)
+- Android Kotlin client
+- Terminal chat client
+- Windows desktop client (future)
+
+**Tools:**
+- Docker-ready
+- CI/CD planned (GitHub Actions)
+- Architecture Diagrams
+- MIT License
+
+---
+
+# ⭐ Features
+
+- Real-time messaging
+- Multiple clients (terminal, web, mobile)
+- Secure authentication (upgradeable)
+- USC fan–focused UI (future)
+- Modular backend API
+- Chat rooms (coming soon)
+- Message history + persistence (future)
+
+---
+
+# 🏗 Architecture
+
+Below is a simplified architecture for TrojanChat:
+
+                +------------------------+
+                |      Web Client        |
+                +------------------------+
+                            |
+                +------------------------+
+                |    Android Client      |
+                +------------------------+
+                            |
+                +------------------------+
+                |  Terminal / Desktop    |
+                +------------------------+
+                            |
+                            v
+              +-----------------------------+
+              |         Backend API         |
+              |  (FastAPI / Node.js)        |
+              +--------------+--------------+
+                             |
+                             v
+              +-----------------------------+
+              |   Realtime Storage Layer    |
+              | (Firebase / WebSockets)     |
+              +-----------------------------+
+
+---
+
+# 📦 Installation
+
+Clone the repo:
+
+```bash
+git clone https://github.com/Trojan3877/TrojanChat
+cd TrojanChat
+pip install -r requirements.txt
+Open project in Android Studio
+Build > Make Project
+python client/terminal/main.py
+Open client/web/index.html in browser
+uvicorn backend.api:app --reload
+http://localhost:8000
+
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/aff03b98-26c4-43db-884d-249229ac898c" />
 
 
 
