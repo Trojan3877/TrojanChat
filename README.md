@@ -131,6 +131,13 @@ TrojanChat/
 ### Install dependencies
 ```bash
 pip install -r backend/requirements.txt
+uvicorn backend.api:app --host 0.0.0.0 --port 8000
+http://localhost:8000
+ws://localhost:8000/ws/chat
+client/web/index.html
+python client/terminal/cli.py
+client/android/app/
+ws://10.0.2.2:8000/ws/chat
 
 
 
