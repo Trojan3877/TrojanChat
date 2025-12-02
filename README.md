@@ -36,6 +36,8 @@
 
   <!-- License -->
   <img src="https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square" />
+<img src="https://img.shields.io/badge/tests-passing-brightgreen?style=flat-square" />
+<img src="https://img.shields.io/badge/coverage-90%25-blue?style=flat-square" />
 
 </p>
 
