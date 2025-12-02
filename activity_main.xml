@@ -1,41 +1,95 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+package com.trojanchat
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import kotlinx.coroutines.*
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
 
-        <LinearLayout
-            android:id="@+id/messagesLayout"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+class MainActivity : AppCompatActivity() {
 
-    </ScrollView>
+    private val client = OkHttpClient()
+    private val API_URL = "http://10.0.2.2:8000"  // Android emulator → localhost
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp">
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        <EditText
-            android:id="@+id/messageInput"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:hint="Enter message" />
+        val usernameField = findViewById<EditText>(R.id.usernameField)
+        val messageField = findViewById<EditText>(R.id.messageField)
+        val sendButton = findViewById<Button>(R.id.sendButton)
+        val chatBox = findViewById<TextView>(R.id.chatBox)
 
-        <Button
-            android:id="@+id/sendButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Send" />
+        sendButton.setOnClickListener {
+            val username = usernameField.text.toString()
+            val message = messageField.text.toString()
 
-    </LinearLayout>
+            if (username.isNotEmpty() && message.isNotEmpty()) {
+                sendMessage(username, message)
+                messageField.text.clear()
+            }
+        }
 
-</LinearLayout>
+        // Auto-refresh messages every 3 seconds
+        CoroutineScope(Dispatchers.IO).launch {
+            while (isActive) {
+                fetchMessages { messages ->
+                    runOnUiThread {
+                        chatBox.text = messages
+                    }
+                }
+                delay(3000)
+            }
+        }
+    }
+
+    private fun sendMessage(username: String, content: String) {
+        val json = JSONObject()
+        json.put("username", username)
+        json.put("content", content)
+
+        val body = RequestBody.create(
+            MediaType.parse("application/json; charset=utf-8"),
+            json.toString()
+        )
+
+        val request = Request.Builder()
+            .url("$API_URL/chat/send")
+            .post(body)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {}
+            override fun onResponse(call: Call, response: Response) {}
+        })
+    }
+
+    private fun fetchMessages(callback: (String) -> Unit) {
+        val request = Request.Builder()
+            .url("$API_URL/chat/history?limit=30")
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {}
+            override fun onResponse(call: Call, response: Response) {
+                val bodyString = response.body()?.string() ?: ""
+                callback(formatMessages(bodyString))
+            }
+        })
+    }
+
+    private fun formatMessages(json: String): String {
+        val arr = JSONObject("{\"data\":$json}").getJSONArray("data")
+        val builder = StringBuilder()
+
+        for (i in 0 until arr.length()) {
+            val msg = arr.getJSONObject(i)
+            builder.append("[${msg.getString("username")}] ${msg.getString("content")}\n")
+        }
+        return builder.toString()
+    }
+}
