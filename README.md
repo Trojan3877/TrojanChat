@@ -1,106 +1,139 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Trojan3877/assets/main/trojanchat_banner_dark.png" width="100%" />
+  <img src="docs/banner.png" width="100%" />
 </p>
 
 <h1 align="center">TrojanChat</h1>
-<p align="center">A cross-platform, real-time chat application built for USC fans (and scalable for production use).</p>
+<p align="center">
+  <strong>Real-Time Multi-Platform Chat Application</strong><br>
+  Web • Terminal • Android • FastAPI • WebSockets • Docker  
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.11-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/FastAPI-Backend-green?style=flat-square" />
+  <img src="https://img.shields.io/badge/WebSockets-RealTime-orange?style=flat-square" />
+  <img src="https://img.shields.io/badge/Docker-Ready-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/Android-Kotlin-yellow?style=flat-square" />
+  <img src="https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square" />
+</p>
 
 ---
 
 # 🚀 Overview
 
-**TrojanChat** is a multi-platform real-time chat application designed to let USC football fans connect, discuss recruiting, games, staff changes, and more.  
-The project is built with production readiness in mind, including:
+**TrojanChat** is a fully modern, real-time chat application designed with a **Big Tech architecture**.  
+It includes:
 
-- Multi-platform client support (Web, Terminal, Android, iOS, Desktop)
-- Modular backend API
-- Real-time messaging layer (Firebase or socket-ready)
-- Scalable architecture for future growth
-- Clean, documented code
-- Big Tech–style engineering practices
+- **FastAPI backend** (REST + WebSockets)
+- **Web Client** (real-time, JS + WebSockets)
+- **Terminal Client** (real-time, async WebSockets)
+- **Android Client** (Kotlin + OkHttp)
+- **Dockerized backend**
+- **Clean architecture (services/routes/config)**
+- **Production-grade folder structure**
+- **Automated tests with pytest**
+
+This repo demonstrates **software engineering maturity**, multi-platform development, API design, real-time communication, and scalable system architecture.
 
 ---
 
-# 🛠 Tech Stack
+# 🏗 Architecture (Dark Theme Diagram)
 
-**Backend:**
-- Python / FastAPI or Node.js (future upgrade)
-- WebSockets / Firebase Realtime Database (chooseable)
-- RESTful API (expandable)
+<p align="center">
+  <img src="docs/architecture_dark.png" width="90%" />
+</p>
 
-**Frontend Clients:**
-- Web (HTML/JS)
-- Android Kotlin client
-- Terminal chat client
-- Windows desktop client (future)
+**System Flow:**
 
-**Tools:**
-- Docker-ready
-- CI/CD planned (GitHub Actions)
-- Architecture Diagrams
-- MIT License
+1. Clients (Web, Terminal, Android) connect via **WebSocket** for live messaging  
+2. Backend broadcasts to all connected clients  
+3. REST API provides message history + health checks  
+4. Optional DB/Firebase/Redis layer can be plugged in for persistence  
+
+---
+
+# 💻 Tech Stack
+
+### **Backend**
+- FastAPI
+- WebSockets
+- Python 3.11
+- Uvicorn
+- Pydantic
+- Docker
+- pytest
+
+### **Clients**
+- **Web**: HTML, CSS, JavaScript (WebSockets)
+- **Terminal**: Python + websockets + asyncio
+- **Android**: Kotlin + OkHttp + Coroutines
+
+### **DevOps**
+- Dockerfile (production-ready)
+- `.env.example` for secure configuration
+- Modular folder structure
+- Test suite with pytest
 
 ---
 
 # ⭐ Features
 
-- Real-time messaging
-- Multiple clients (terminal, web, mobile)
-- Secure authentication (upgradeable)
-- USC fan–focused UI (future)
-- Modular backend API
-- Chat rooms (coming soon)
-- Message history + persistence (future)
+- 🔥 **True real-time messaging** (WebSockets)
+- 🌐 **Multi-platform chat** (Web, Terminal, Android)
+- 🧱 **Scalable architecture** ready for DB, Redis, Firebase
+- 🧪 **Automated test suite**
+- 🐳 **Docker-ready backend**
+- 📡 **REST + WebSockets hybrid design**
+- 🚀 **Clean + extensible folder structure**
 
 ---
 
-# 🏗 Architecture
+# 📁 Folder Structure
+TrojanChat/
+│
+├── backend/
+│ ├── api.py
+│ ├── config.py
+│ ├── routes/
+│ │ ├── chat_routes.py
+│ │ └── ws_routes.py
+│ ├── services/
+│ │ └── chat_service.py
+│ ├── requirements.txt
+│
+├── client/
+│ ├── web/
+│ │ ├── index.html
+│ │ ├── styles.css
+│ │ └── chat.js
+│ ├── terminal/
+│ │ └── cli.py
+│ └── android/
+│ ├── app/
+│ └── MainActivity.kt
+│
+├── docs/
+│ ├── architecture_dark.png
+│ ├── flowchart.png
+│ └── banner.png
+│
+├── tests/
+│ └── test_chat_service.py
+│
+├── .gitignore
+├── .env.example
+├── Dockerfile
+├── README.md
+├── LICENSE
 
-Below is a simplified architecture for TrojanChat:
-
-                +------------------------+
-                |      Web Client        |
-                +------------------------+
-                            |
-                +------------------------+
-                |    Android Client      |
-                +------------------------+
-                            |
-                +------------------------+
-                |  Terminal / Desktop    |
-                +------------------------+
-                            |
-                            v
-              +-----------------------------+
-              |         Backend API         |
-              |  (FastAPI / Node.js)        |
-              +--------------+--------------+
-                             |
-                             v
-              +-----------------------------+
-              |   Realtime Storage Layer    |
-              | (Firebase / WebSockets)     |
-              +-----------------------------+
 
 ---
 
-# 📦 Installation
+# ⚙️ Backend Setup
 
-Clone the repo:
-
+### Install dependencies
 ```bash
-git clone https://github.com/Trojan3877/TrojanChat
-cd TrojanChat
-pip install -r requirements.txt
-Open project in Android Studio
-Build > Make Project
-python client/terminal/main.py
-Open client/web/index.html in browser
-uvicorn backend.api:app --reload
-http://localhost:8000
-
-<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/aff03b98-26c4-43db-884d-249229ac898c" />
-
+pip install -r backend/requirements.txt
 
 
 
