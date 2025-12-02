@@ -174,15 +174,41 @@ TrojanChat/
 
 ### Install dependencies
 ```bash
-pip install -r backend/requirements.txt
-uvicorn backend.api:app --host 0.0.0.0 --port 8000
-http://localhost:8000
-ws://localhost:8000/ws/chat
-client/web/index.html
-python client/terminal/cli.py
-client/android/app/
-ws://10.0.2.2:8000/ws/chat
+🚀 Quick Start
+1. Clone the Repository
+git clone https://github.com/Trojan3877/TrojanChat.git
+cd TrojanChat
 
+2. Setup Python Environment
+python -m venv venv
+source venv/bin/activate       # macOS / Linux
+venv\Scripts\activate          # Windows
+
+3. Install Backend Dependencies
+pip install -r backend/requirements.txt
+
+4. Start the Real-Time Backend Server
+uvicorn backend.api:app --host 0.0.0.0 --port 8000 --reload
+
+
+The backend is now running at:
+👉 http://localhost:8000
+
+WebSocket endpoint:
+👉 ws://localhost:8000/ws/chat
+
+5. Run the Web Client
+
+Open:
+
+client/web/index.html
+
+
+in your browser.
+This is a full real-time web chat UI.
+
+6. Run the Terminal Client
+python client/terminal/cli.py
 
 
 
