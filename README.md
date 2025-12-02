@@ -36,9 +36,6 @@ It includes:
 This repo demonstrates **software engineering maturity**, multi-platform development, API design, real-time communication, and scalable system architecture.
 
 ---
-
-# 🏗 Architecture (Dark Theme Diagram)
-
 <p align="center">
   <img src="docs/architecture_dark.png" width="90%" />
 </p>
