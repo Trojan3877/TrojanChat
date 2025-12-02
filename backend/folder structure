@@ -1,0 +1,9 @@
+backend/
+   __init__.py
+   api.py
+   routes/
+       __init__.py
+       chat_routes.py
+   services/
+       __init__.py
+       chat_service.py
