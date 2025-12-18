@@ -1,35 +1,45 @@
 TrojanChat/
-├── client/
-│   ├── index.html
-│   ├── app.js
-│   └── style.css
-│   └── package.json        (optional for live-server)
-│
-├── server/
-│   ├── index.js
-│   ├── auth.js
-│   ├── models/
-│   │   ├── Message.js
-│   │   └── User.js
-│   ├── tests/
-│   │   └── auth.test.js
-│   ├── .env.example
-│   └── package.json
-│
-├── mobile/                 ← React Native project
-│   ├── android/
-│   │   └── app/
-│   │       ├── build.gradle
-│   │       ├── trojanchat-release.keystore   (generated)
-│   │       └── ... (rest of Android project)
-│   ├── ios/                (if you plan to support iOS)
-│   ├── App.js
-│   ├── babel.config.js
-│   └── package.json
-│
 ├── .github/
 │   └── workflows/
 │       └── ci.yml
-├── docker-compose.yml       (optional)
-├── LICENSE
-└── README.md
+├── app/
+│   ├── api/
+│   │   ├── routes/
+│   │   ├── websocket.py
+│   │   └── dependencies.py
+│   ├── core/
+│   │   ├── config.py
+│   │   ├── security.py
+│   │   └── logging.py
+│   ├── db/
+│   │   ├── models.py
+│   │   ├── session.py
+│   │   └── migrations/
+│   ├── ml/
+│   │   ├── moderation_model.py
+│   │   └── cuda_check.py
+│   ├── services/
+│   │   ├── chat_service.py
+│   │   └── user_service.py
+│   └── main.py
+├── docker/
+│   ├── Dockerfile
+│   └── Dockerfile.cuda
+├── scripts/
+│   └── init_db.py
+├── tests/
+│   ├── test_api.py
+│   └── test_chat.py
+├── docs/
+│   ├── architecture.md
+│   ├── system_design.md
+│   └── threat_model.md
+├── metrics.md
+├── dailylog.md
+├── changelog.md
+├── contribution.md
+├── render.yaml
+├── requirements.txt
+├── README.md
+└── LICENSE
+
