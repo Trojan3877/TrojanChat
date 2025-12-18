@@ -1,33 +1,35 @@
-version: '3.8'
+version: "3.9"
 
 services:
-  web:
-    build: .
-    container_name: trojanchat-web
-    ports:
-      - "3000:3000"
-    volumes:
-      - .:/app
-    environment:
-      - REACT_APP_API_URL=http://localhost:8080
-
-  trojanchat_service:
+  trojanchat:
+    container_name: trojanchat-api
     build:
-      context: ./TrojanChat/backend
+      context: .
       dockerfile: Dockerfile
-    container_name: trojanchat-service
     ports:
-      - "8080:8080"
-    environment:
-      - FIREBASE_SERVICE_ACCOUNT=/etc/secrets/serviceAccountKey.json
-    volumes:
-      - ./credentials:/etc/secrets
-    depends_on:
-      - web
+      - "10000:10000"
+    env_file:
+      - .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:10000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
-  # Optional: add analytics, database, etc.
-
-
-git add docker-compose.yml
-git commit -m "Integrate TrojanChat Go microservice into docker-compose"
-git push
+  trojanchat-gpu:
+    container_name: trojanchat-gpu
+    build:
+      context: .
+      dockerfile: Dockerfile.cuda
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    ports:
+      - "10001:10000"
+    env_file:
+      - .env
+    restart: unless-stopped
