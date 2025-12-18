@@ -1,27 +1,56 @@
-# -------------------------------
-# TROJANCHAT BACKEND DEPENDENCIES
-# -------------------------------
+# -------------------------
+# Core Runtime
+# -------------------------
+python-dotenv==1.0.1
+pydantic==2.7.1
 
-# Web framework
-fastapi==0.110.0
-
-# ASGI server
+# -------------------------
+# API / Backend
+# -------------------------
+fastapi==0.111.0
 uvicorn[standard]==0.29.0
 
-# Environment variable management
-python-dotenv==1.0.1
+# -------------------------
+# Database
+# -------------------------
+pymongo==4.7.2
+motor==3.4.0
 
-# Data validation / models
-pydantic==2.6.4
-pydantic-settings==2.2.1
+# -------------------------
+# Auth & Security
+# -------------------------
+python-jose==3.3.0
+passlib[bcrypt]==1.7.4
 
-# Optional: for Firebase realtime database (future upgrade)
-firebase-admin==6.3.0
+# -------------------------
+# Realtime / Messaging
+# -------------------------
+websockets==12.0
 
-# Optional: async support (recommended)
+# -------------------------
+# ML / NLP (CUDA-Ready)
+# -------------------------
+torch==2.3.0+cu121
+
+transformers==4.41.1
+sentence-transformers==2.7.0
+
+# -------------------------
+# RAG / Vector Search
+# -------------------------
+faiss-cpu==1.8.0
+langchain==0.2.1
+langchain-community==0.2.1
+
+# -------------------------
+# Observability
+# -------------------------
+loguru==0.7.2
+prometheus-client==0.20.0
+
+# -------------------------
+# Testing
+# -------------------------
+pytest==8.2.0
 httpx==0.27.0
 
-# Optional utilities for production readiness
-loguru==0.7.2
-
-# For UUIDs and timestamps, the Python stdlib is enough — no external package needed.
