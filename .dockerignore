@@ -1,0 +1,42 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env/
+.env.*
+
+# Git
+.git/
+.gitignore
+
+# Logs
+logs/
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Notebooks / temp files
+*.ipynb
+*.csv
+
+# Tests & coverage
+.coverage
+htmlcov/
+
+# Docker
+Dockerfile
+Dockerfile.cuda
+
+# Docs artifacts
+*.pdf
+*.png
