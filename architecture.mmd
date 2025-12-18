@@ -1,0 +1,18 @@
+flowchart LR
+    User[User / Client<br/>Web or Mobile]
+    LB[Load Balancer]
+    API[FastAPI API Layer]
+    Auth[Auth Service<br/>JWT / OAuth]
+    Chat[Chat Core<br/>Routing Engine]
+    DB[(Database<br/>Postgres / MongoDB)]
+    AI[AI Services<br/>CUDA / LLM]
+    Cache[Cache / Redis]
+
+    User -->|HTTPS / WS| LB
+    LB --> API
+    API --> Auth
+    API --> Chat
+    Chat --> DB
+    Chat --> Cache
+    Chat --> AI
+    AI --> DB
