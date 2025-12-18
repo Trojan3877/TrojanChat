@@ -1,11 +1,12 @@
-# =============================================
-# TROJANCHAT — PRODUCTION FASTAPI DOCKERFILE
-# =============================================
+# ================================
+# TrojanChat - Production Dockerfile
+# ================================
 
-# Use a lightweight Python base image
-FROM python:3.11-slim
+# Base image (lightweight, production-safe)
+FROM python:3.10-slim
 
-# Prevent Python from buffering logs
+# Prevent Python from writing pyc files
+ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # Set working directory
@@ -14,19 +15,21 @@ WORKDIR /app
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy dependency file
-COPY backend/requirements.txt /app/requirements.txt
+# Copy requirements first (better caching)
+COPY requirements.txt .
 
-# Install backend Python packages
-RUN pip install --no-cache-dir -r /app/requirements.txt
+# Install Python dependencies
+RUN pip install --upgrade pip \
+    && pip install -r requirements.txt
 
-# Copy backend source code
-COPY backend /app/backend
+# Copy application code
+COPY . .
 
-# Expose FastAPI port
+# Expose port (Render uses this)
 EXPOSE 8000
 
-# Start FastAPI with Uvicorn
-CMD ["uvicorn", "backend.api:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run application
+CMD ["python", "main.py"]
