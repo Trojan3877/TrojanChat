@@ -1,193 +1,109 @@
-<h1 align="center">🔥 TrojanChat — Real-Time Multi-Platform Chat System</h1>
+# TrojanChat 🏈💬  
+**A Production-Grade, Real-Time Chat Platform with ML-Assisted Moderation**
 
-<p align="center">
-  <strong>A production-style, multi-client distributed chat application built with FastAPI, WebSockets, Kotlin, JavaScript, and Python.</strong>
-</p>
-
-<p align="center">
-  <!-- Backend -->
-  <img src="https://img.shields.io/badge/Python-3.11-blue?style=flat-square" />
-  <img src="https://img.shields.io/badge/FastAPI-Backend-green?style=flat-square" />
-  <img src="https://img.shields.io/badge/WebSockets-RealTime-orange?style=flat-square" />
-  <img src="https://img.shields.io/badge/Uvicorn-ASGI%20Server-purple?style=flat-square" />
-
-  <!-- Frontend -->
-  <img src="https://img.shields.io/badge/HTML-Web-red?style=flat-square" />
-  <img src="https://img.shields.io/badge/CSS-Styling-blue?style=flat-square" />
-  <img src="https://img.shields.io/badge/JavaScript-Frontend-yellow?style=flat-square" />
-
-  <!-- Terminal -->
-  <img src="https://img.shields.io/badge/Python-CLI-blue?style=flat-square" />
-
-  <!-- Android -->
-  <img src="https://img.shields.io/badge/Android-Kotlin-green?style=flat-square" />
-  <img src="https://img.shields.io/badge/Coroutines-Async-blue?style=flat-square" />
-  <img src="https://img.shields.io/badge/OkHttp-Networking-orange?style=flat-square" />
-
-  <!-- DevOps -->
-  <img src="https://img.shields.io/badge/Docker-Ready-blue?style=flat-square" />
-  <img src="https://img.shields.io/badge/GitHub%20Actions-CI%2FCD-gray?style=flat-square" />
-  
-  <!-- Tests -->
-  <img src="https://img.shields.io/badge/tests-passing-brightgreen?style=flat-square" />
-  <img src="https://img.shields.io/badge/coverage-90%25-blue?style=flat-square" />
-
-  <!-- License -->
-  <img src="https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square" />
-</p>
+![Build](https://img.shields.io/github/actions/workflow/status/Trojan3877/TrojanChat/ci.yml)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-Production-green)
+![CUDA](https://img.shields.io/badge/NVIDIA-CUDA%20Ready-brightgreen)
+![License](https://img.shields.io/github/license/Trojan3877/TrojanChat)
+![Last Commit](https://img.shields.io/github/last-commit/Trojan3877/TrojanChat)
 
 ---
 
-# 📌 Overview
+## 📌 Overview
 
-**TrojanChat** is a real-time, multi-platform chat system designed with production-level engineering practices.  
-It features:
+**TrojanChat** is a real-time, scalable chat platform designed for high-traffic communities (e.g., sports fandoms, live events, campus networks).  
+It supports **WebSocket-based messaging**, **JWT authentication**, **moderation via ML inference**, and **GPU acceleration (NVIDIA CUDA)**.
 
-- 🚀 **FastAPI WebSocket backend**  
-- 🖥 **Web client (HTML/CSS/JS)**  
-- 🖥 **Terminal real-time chat client**  
-- 📱 **Android Kotlin client**  
-- 📦 **Docker-ready deployment**  
-- 🧪 **Automated test suite (pytest + WebSocket tests)**  
-- 🧩 **Clean architecture & modular design**
-
-This project demonstrates real distributed-system thinking, multi-client support, and full-stack engineering.
+This project is engineered to **production standards** and aligned with **L6–L7 Big Tech system design expectations**.
 
 ---
 
-# 🏗 Architecture
+## 🧠 Key Features
 
-<p align="center">
-  <img src="docs/architecture_dark.png" width="90%" />
-</p>
-
-### **Core Architecture Components**
-- **FastAPI WebSocket Server** → manages real-time connections  
-- **Broadcast Hub** → relays messages across all connected clients  
-- **Web Client** → lightweight frontend UI  
-- **Terminal Client** → real-time CLI experience  
-- **Android Client** → mobile chat app (Kotlin + Coroutines)  
-
----
-
-# 🔄 System Flow
-
-<p align="center">
-  <img src="docs/flowchart.png" width="80%" />
-</p>
+- ⚡ Real-time chat via WebSockets
+- 🔐 JWT-based authentication
+- 🧠 ML-assisted content moderation (GPU-accelerated)
+- 🚀 NVIDIA CUDA support with CPU fallback
+- 🧩 Modular service-oriented architecture
+- 📊 Production metrics & observability
+- 🐳 Dockerized for local & cloud deployment
+- ☁️ Deployable on **Render**
+- 🧪 CI-tested with GitHub Actions
 
 ---
 
-# 🚀 Quick Start
+## 🏗️ System Architecture
 
-### **1. Clone the Repository**
+Client (Web / Mobile)
+|
+REST + WebSocket
+|
+FastAPI Gateway
+|
+| Auth | Chat | ML | Persistence |
+Redis Cache
+|
+PostgreSQL
+|
+Optional GPU (CUDA Inference)
+
+### Design Highlights
+- Stateless API layer for horizontal scaling
+- WebSocket fan-out optimized for low latency
+- ML moderation isolated for safety and performance
+- GPU detection at runtime with graceful fallback
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer            | Technology |
+|------------------|------------|
+| Backend API      | FastAPI |
+| Realtime         | WebSockets |
+| Database         | PostgreSQL |
+| Cache            | Redis |
+| Auth             | JWT |
+| ML Inference     | PyTorch |
+| GPU              | NVIDIA CUDA |
+| Containerization | Docker |
+| CI/CD            | GitHub Actions |
+| Hosting          | Render |
+
+---
+
+## ⚡ Quickstart (Local)
+
 ```bash
 git clone https://github.com/Trojan3877/TrojanChat.git
 cd TrojanChat
-
----
-
-# 📁 Folder Structure
-TrojanChat/
-│
-├── backend/
-│ ├── api.py
-│ ├── config.py
-│ ├── routes/
-│ │ ├── chat_routes.py
-│ │ └── ws_routes.py
-│ ├── services/
-│ │ └── chat_service.py
-│ ├── requirements.txt
-│
-├── client/
-│ ├── web/
-│ │ ├── index.html
-│ │ ├── styles.css
-│ │ └── chat.js
-│ ├── terminal/
-│ │ └── cli.py
-│ └── android/
-│ ├── app/
-│ └── MainActivity.kt
-│
-├── docs/
-│ ├── architecture_dark.png
-│ ├── flowchart.png
-│ └── banner.png
-│
-├── tests/
-│ └── test_chat_service.py
-│
-├── .gitignore
-├── .env.example
-├── Dockerfile
-├── README.md
-├── LICENSE
-
-
----
-<p align="center">
-  <img src="docs/flowchart.png" width="80%" />
-</p>
-
-
-# 🖼 Screenshots
-
-### Web Client (Real-Time)
-<p align="center">
-  <img src="docs/screenshots/web_client.png" width="70%" />
-</p>
-
-### Terminal Client (Real-Time)
-<p align="center">
-  <img src="docs/screenshots/terminal_client.png" width="70%" />
-</p>
-
-### Android Client (Mobile)
-<p align="center">
-  <img src="docs/screenshots/android_app.png" width="40%" />
-</p>
-
-# ⚙️ Backend Setup
-
-### Install dependencies
-```bash
-🚀 Quick Start
-1. Clone the Repository
-git clone https://github.com/Trojan3877/TrojanChat.git
-cd TrojanChat
-
-2. Setup Python Environment
 python -m venv venv
-source venv/bin/activate       # macOS / Linux
-venv\Scripts\activate          # Windows
+source venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+http://localhost:8000/docs
+docker build -t trojanchat .
+docker run -p 8000:8000 trojanchat
+Requirements
 
-3. Install Backend Dependencies
-pip install -r backend/requirements.txt
+NVIDIA GPU
 
-4. Start the Real-Time Backend Server
-uvicorn backend.api:app --host 0.0.0.0 --port 8000 --reload
+CUDA Toolkit installed
 
+nvidia-container-toolkit
 
-The backend is now running at:
-👉 http://localhost:8000
+docker build -f docker/Dockerfile.cuda -t trojanchat-gpu .
+docker run --gpus all -p 8000:8000 trojanchat-gpu
 
-WebSocket endpoint:
-👉 ws://localhost:8000/ws/chat
+TrojanChat includes a render.yaml for one-click deployment:
 
-5. Run the Web Client
+FastAPI web service
 
-Open:
+PostgreSQL database
 
-client/web/index.html
+Redis cache
 
-
-in your browser.
-This is a full real-time web chat UI.
-
-6. Run the Terminal Client
-python client/terminal/cli.py
-
+GPU-backed inference can be deployed on supported Render instances or external GPU services.
 
 
