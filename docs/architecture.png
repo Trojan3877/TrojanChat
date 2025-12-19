@@ -1,0 +1,13 @@
+Client
+  |
+  v
+FastAPI (TrojanChat API)
+  |
+  +--> JWT Auth
+  +--> Rate Limiter
+  |
+  +--> Redis (cache)
+  |
+  +--> MongoDB (messages/users)
+  |
+  +--> ML Moderation (CUDA optional)
