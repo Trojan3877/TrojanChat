@@ -1,35 +1,40 @@
 version: "3.9"
 
 services:
-  trojanchat:
+  api:
+    build: .
     container_name: trojanchat-api
-    build:
-      context: .
-      dockerfile: Dockerfile
     ports:
       - "10000:10000"
     env_file:
       - .env
+    depends_on:
+      - mongo
+      - redis
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:10000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
 
-  trojanchat-gpu:
-    container_name: trojanchat-gpu
-    build:
-      context: .
-      dockerfile: Dockerfile.cuda
-    runtime: nvidia
+    # --- GPU Optional ---
     deploy:
       resources:
         reservations:
           devices:
             - capabilities: [gpu]
+
+  mongo:
+    image: mongo:7
+    container_name: trojanchat-mongo
     ports:
-      - "10001:10000"
-    env_file:
-      - .env
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
     restart: unless-stopped
+
+  redis:
+    image: redis:7
+    container_name: trojanchat-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
