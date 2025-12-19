@@ -1,10 +1,28 @@
 # TrojanChat 🚀
+<!-- Project Info -->
+![Repo Size](https://img.shields.io/github/repo-size/Trojan3877/TrojanChat?style=flat-square)
+![Last Commit](https://img.shields.io/github/last-commit/Trojan3877/TrojanChat?style=flat-square)
+![Contributors](https://img.shields.io/github/contributors/Trojan3877/TrojanChat?style=flat-square)
 
-![Python](https://img.shields.io/badge/python-3.10-blue)
-![Docker](https://img.shields.io/badge/docker-ready-blue)
-![CUDA](https://img.shields.io/badge/NVIDIA-CUDA-green)
-![CI](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg)
-![License](https://img.shields.io/badge/license-MIT-green)
+<!-- Language and Tech Stack -->
+![Python](https://img.shields.io/badge/Python-82%25-blue?style=flat-square&logo=python)
+![JavaScript](https://img.shields.io/badge/JavaScript-5%25-yellow?style=flat-square&logo=javascript)
+![C%23](https://img.shields.io/badge/C%23-3%25-purple?style=flat-square&logo=c-sharp)
+![Jupyter](https://img.shields.io/badge/Jupyter-4%25-orange?style=flat-square&logo=jupyter)
+
+<!-- Code Quality -->
+![Issues](https://img.shields.io/github/issues/Trojan3877/TrojanChat?style=flat-square)
+![CI Status](https://img.shields.io/github/actions/workflow/status/Trojan3877/TrojanChat/ci.yml?style=flat-square)
+![License](https://img.shields.io/github/license/Trojan3877/TrojanChat?style=flat-square)
+
+<!-- Community -->
+![Stars](https://img.shields.io/github/stars/Trojan3877/TrojanChat?style=flat-square)
+![Forks](https://img.shields.io/github/forks/Trojan3877/TrojanChat?style=flat-square)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Trojan3877&show_icons=true&theme=react&count_private=true&hide_border=true)
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=Trojan3877&layout=compact&theme=react&hide_border=true)
+![GitHub Streak](https://streak-stats.demolab.com?user=Trojan3877&theme=react&hide_border=true)
+
+
 
 ## Overview
 TrojanChat is a production-grade, scalable chat platform designed with
