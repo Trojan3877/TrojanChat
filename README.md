@@ -1,10 +1,9 @@
 # TrojanChat 🚀
-<!-- Project Info -->
+
 ![Repo Size](https://img.shields.io/github/repo-size/Trojan3877/TrojanChat?style=flat-square)
 ![Last Commit](https://img.shields.io/github/last-commit/Trojan3877/TrojanChat?style=flat-square)
 ![Contributors](https://img.shields.io/github/contributors/Trojan3877/TrojanChat?style=flat-square)
 
-<!-- Language and Tech Stack -->
 ![Python](https://img.shields.io/badge/Python-82%25-blue?style=flat-square&logo=python)
 ![JavaScript](https://img.shields.io/badge/JavaScript-5%25-yellow?style=flat-square&logo=javascript)
 ![C%23](https://img.shields.io/badge/C%23-3%25-purple?style=flat-square&logo=c-sharp)
@@ -18,7 +17,7 @@
 ![Issues](https://img.shields.io/github/issues/Trojan3877/TrojanChat)
 ![License](https://img.shields.io/github/license/Trojan3877/TrojanChat)
 
-<!-- Community -->
+
 ![Stars](https://img.shields.io/github/stars/Trojan3877/TrojanChat?style=flat-square)
 ![Forks](https://img.shields.io/github/forks/Trojan3877/TrojanChat?style=flat-square)
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Trojan3877&show_icons=true&theme=react&count_private=true&hide_border=true)
