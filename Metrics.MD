@@ -1,168 +1,89 @@
-# 📊 TrojanChat – Engineering Metrics
+# TrojanChat — Engineering Metrics
 
-This document tracks **quantifiable performance, reliability, and scalability metrics** for TrojanChat.
-
-All metrics are designed to align with **L6–L7 engineering expectations** at Big Tech and AI companies.
-
----
-
-## 🧠 System Overview
-
-TrojanChat is a **real-time, event-driven chat platform** designed for:
-- Low-latency communication
-- High concurrency
-- Secure messaging
-- GPU-accelerated workloads (optional via NVIDIA CUDA)
+This document defines the technical, reliability, performance, and ML metrics
+used to evaluate TrojanChat as a production-grade system.
 
 ---
 
-## 🚀 Performance Metrics
+## 1. System Reliability
 
-### Message Latency
-| Metric | Value |
+| Metric | Target | Description |
+|------|--------|-------------|
+| Uptime | ≥ 99.9% | Measured via container health checks |
+| API Error Rate | < 1% | 5xx responses over total requests |
+| Restart Rate | < 1/day | Container restarts per 24h |
+
+---
+
+## 2. Performance Metrics
+
+| Metric | Target | Description |
+|------|--------|-------------|
+| API Latency (p95) | < 200ms | End-to-end request latency |
+| Message Throughput | 1,000+ msg/sec | Concurrent chat messages |
+| Cold Start Time | < 3s | Docker container boot time |
+
+---
+
+## 3. Scalability Metrics
+
+| Metric | Target | Description |
+|------|--------|-------------|
+| Concurrent Users | 50k+ | Horizontal scaling supported |
+| DB Read Latency | < 20ms | MongoDB indexed queries |
+| Cache Hit Rate | > 85% | Redis-backed message caching |
+
+---
+
+## 4. ML / AI Metrics (Optional GPU Acceleration)
+
+| Metric | Target | Description |
+|------|--------|-------------|
+| Inference Latency | < 150ms | GPU or CPU fallback |
+| Model Accuracy | ≥ 92% | Toxicity / moderation classification |
+| GPU Utilization | 70–90% | Efficient CUDA usage |
+
+---
+
+## 5. Security Metrics
+
+| Metric | Target |
+|------|--------|
+| Auth Coverage | 100% |
+| JWT Expiration | ≤ 60 min |
+| Rate Limit Violations | < 0.1% |
+| Dependency CVEs | 0 Critical |
+
+---
+
+## 6. Observability
+
+| Metric | Tool |
 |------|------|
-| P50 Latency | ~12 ms |
-| P90 Latency | ~28 ms |
-| P99 Latency | ~47 ms |
-
-> Measured using WebSocket round-trip time under simulated load.
-
----
-
-### Throughput
-| Metric | Value |
-|------|------|
-| Messages / Second | ~42,000 |
-| Concurrent Connections | 25,000+ |
-| Peak Sustained Load | 30 min |
+| Metrics | Prometheus |
+| Logging | Loguru |
+| Alerts | Render / Prometheus |
+| Tracing | Planned (OpenTelemetry) |
 
 ---
 
-## 💾 Resource Utilization
+## 7. Deployment Metrics
 
-### CPU
-- Average: **35–45%**
-- Peak: **70%**
-- Optimized via async I/O and event batching
-
-### Memory
-- Baseline: **180 MB**
-- Peak under load: **420 MB**
-- No detected memory leaks (validated via Valgrind)
-
-### GPU (Optional – NVIDIA CUDA)
-- CUDA Offload Tasks:
-  - Encryption batching
-  - Message compression
-- GPU Utilization: **40–60%**
-- Speedup vs CPU-only: **~1.9×**
+| Metric | Target |
+|------|--------|
+| CI Success Rate | ≥ 99% |
+| Rollback Time | < 60s |
+| Image Size | < 1.2GB |
 
 ---
 
-## 🔐 Reliability Metrics
+## 8. Continuous Improvement
 
-### Uptime
-| Metric | Value |
-|------|------|
-| Monthly Uptime | 99.97% |
-| Mean Time Between Failures (MTBF) | ~41 days |
-| Mean Time to Recovery (MTTR) | < 2 minutes |
+Metrics are reviewed weekly. Regressions trigger alerts and automated rollback.
+New features must define measurable success criteria before merge.
 
 ---
 
-### Fault Tolerance
-- Graceful degradation on node failure
-- Automatic client reconnection
-- Stateless services with persistent backend
-
----
-
-## 📈 Scalability Metrics
-
-| Nodes | Concurrent Users | Latency |
-|------|------------------|---------|
-| 1 | 2,000 | 15 ms |
-| 3 | 8,000 | 18 ms |
-| 5 | 20,000 | 22 ms |
-| 10 | 50,000 | 31 ms |
-
----
-
-## 🧪 Testing Coverage
-
-### Unit Tests
-- Coverage: **92%**
-- All critical paths tested
-
-### Integration Tests
-- API layer
-- WebSocket messaging
-- Database persistence
-
-### Load Tests
-- Locust-based simulation
-- Burst traffic modeling
-- Failure injection tests
-
----
-
-## 🔍 Observability
-
-### Logging
-- Structured JSON logs
-- Correlation IDs
-- Log levels enforced
-
-### Monitoring
-- Prometheus-compatible metrics
-- Custom counters for:
-  - Messages sent
-  - Failed deliveries
-  - Reconnection attempts
-
----
-
-## 🔄 CI/CD Metrics
-
-| Metric | Value |
-|------|------|
-| Build Time | ~4 min |
-| Test Time | ~3 min |
-| Deployment Time | ~90 sec |
-| Failure Rate | < 2% |
-
----
-
-## 📉 Known Bottlenecks
-
-- Redis write contention at extreme scale
-- WebSocket fan-out cost above 50k users
-
-Mitigations planned:
-- Sharded Redis
-- Message broker fan-out optimization
-
----
-
-## 🧭 Roadmap Metrics
-
-| Feature | Target Metric |
-|------|------|
-| End-to-end encryption | < 5% latency increase |
-| AI moderation | < 10 ms inference |
-| Multi-region sync | < 40 ms cross-region RTT |
-
----
-
-## 🏁 Summary
-
-TrojanChat meets or exceeds:
-- **Senior Engineer (L5) expectations**
-- **Staff Engineer (L6) standards**
-- **Approaching Principal (L7) quality**
-
-This project demonstrates **production-grade engineering maturity**.
-
----
+_Last Updated: 2025_
 
 
