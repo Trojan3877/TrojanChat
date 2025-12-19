@@ -10,10 +10,13 @@
 ![C%23](https://img.shields.io/badge/C%23-3%25-purple?style=flat-square&logo=c-sharp)
 ![Jupyter](https://img.shields.io/badge/Jupyter-4%25-orange?style=flat-square&logo=jupyter)
 
-<!-- Code Quality -->
-![Issues](https://img.shields.io/github/issues/Trojan3877/TrojanChat?style=flat-square)
-![CI Status](https://img.shields.io/github/actions/workflow/status/Trojan3877/TrojanChat/ci.yml?style=flat-square)
-![License](https://img.shields.io/github/license/Trojan3877/TrojanChat?style=flat-square)
+![CI](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg)
+![Repo Size](https://img.shields.io/github/repo-size/Trojan3877/TrojanChat)
+![Last Commit](https://img.shields.io/github/last-commit/Trojan3877/TrojanChat)
+![Stars](https://img.shields.io/github/stars/Trojan3877/TrojanChat)
+![Forks](https://img.shields.io/github/forks/Trojan3877/TrojanChat)
+![Issues](https://img.shields.io/github/issues/Trojan3877/TrojanChat)
+![License](https://img.shields.io/github/license/Trojan3877/TrojanChat)
 
 <!-- Community -->
 ![Stars](https://img.shields.io/github/stars/Trojan3877/TrojanChat?style=flat-square)
