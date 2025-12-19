@@ -1,46 +1,42 @@
-# -------------------------
-# Base Image (Stable + Fast)
-# -------------------------
-FROM python:3.11-slim
+# =========================================
+# TrojanChat - Production Dockerfile
+# CUDA + Render Compatible
+# =========================================
 
-# -------------------------
-# Environment Settings
-# -------------------------
+# ---- Base Image (CUDA-capable) ----
+FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
+
+# ---- Environment ----
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+ENV APP_HOME=/app
 
-# -------------------------
-# System Dependencies
-# -------------------------
+# ---- System Deps ----
 RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-venv \
     build-essential \
-    curl \
     git \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
-# -------------------------
-# Working Directory
-# -------------------------
-WORKDIR /app
+# ---- Set Workdir ----
+WORKDIR $APP_HOME
 
-# -------------------------
-# Install Python Dependencies
-# -------------------------
+# ---- Copy Requirements ----
 COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
 
-# -------------------------
-# Copy Application Code
-# -------------------------
+# ---- Install Python Deps ----
+RUN pip3 install --upgrade pip \
+    && pip3 install --no-cache-dir -r requirements.txt
+
+# ---- Copy App Code ----
 COPY . .
 
-# -------------------------
-# Expose Port (Render uses 10000)
-# -------------------------
+# ---- Expose Port (Render uses 10000) ----
 EXPOSE 10000
 
-# -------------------------
-# Start Application
-# -------------------------
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "10000"]
+# ---- Default Command ----
+CMD ["python3", "main.py"]
+
