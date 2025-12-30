@@ -1,42 +1,9 @@
-# =========================================
-# TrojanChat - Production Dockerfile
-# CUDA + Render Compatible
-# =========================================
+FROM python:3.11-slim
 
-# ---- Base Image (CUDA-capable) ----
-FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
-
-# ---- Environment ----
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-ENV APP_HOME=/app
-
-# ---- System Deps ----
-RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip \
-    python3-venv \
-    build-essential \
-    git \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
-
-# ---- Set Workdir ----
-WORKDIR $APP_HOME
-
-# ---- Copy Requirements ----
+WORKDIR /app
 COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# ---- Install Python Deps ----
-RUN pip3 install --upgrade pip \
-    && pip3 install --no-cache-dir -r requirements.txt
-
-# ---- Copy App Code ----
 COPY . .
-
-# ---- Expose Port (Render uses 10000) ----
-EXPOSE 10000
-
-# ---- Default Command ----
-CMD ["python3", "main.py"]
+CMD ["streamlit", "run", "streamlit_app/dashboard.py"]
 
