@@ -1,5 +1,7 @@
 TrojanChat 🚀
 
+<img width="1024" height="1536" alt="file_00000000bbb071f88a9c63d0ee35ebc8 (10)" src="https://github.com/user-attachments/assets/567c6e11-ede5-4528-8188-a168464291d1" />
+
 
 TrojanChat is a **production-ready, L7/L8-quality conversational AI platform** designed for real-time USC football discussions.  
 It demonstrates **modern LLM system design**, **ML observability**, and **clean UI/UX**, following engineering standards used at Big Tech and Big AI companies.
