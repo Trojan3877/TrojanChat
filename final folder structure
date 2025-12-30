@@ -1,45 +1,47 @@
 TrojanChat/
+├── app/
+│   ├── api/
+│   │   ├── __init__.py
+│   │   ├── chat_routes.py
+│   │   └── health.py
+│   ├── core/
+│   │   ├── config.py
+│   │   ├── llm_client.py
+│   │   ├── prompt_templates.py
+│   │   └── session_manager.py
+│   ├── services/
+│   │   ├── chat_service.py
+│   │   ├── moderation_service.py
+│   │   └── analytics_service.py
+│   ├── models/
+│   │   └── chat_message.py
+│   └── main.py
+│
+├── ml/
+│   ├── experiments/
+│   │   └── prompt_eval.py
+│   ├── tracking/
+│   │   └── mlflow_utils.py
+│   └── metrics.py
+│
+├── streamlit_app/
+│   ├── dashboard.py
+│   ├── pages/
+│   │   ├── chat_ui.py
+│   │   ├── metrics.py
+│   │   └── logs.py
+│   └── state.py
+│
+├── tests/
+│   ├── test_chat_service.py
+│   └── test_llm_client.py
+│
 ├── .github/
 │   └── workflows/
 │       └── ci.yml
-├── app/
-│   ├── api/
-│   │   ├── routes/
-│   │   ├── websocket.py
-│   │   └── dependencies.py
-│   ├── core/
-│   │   ├── config.py
-│   │   ├── security.py
-│   │   └── logging.py
-│   ├── db/
-│   │   ├── models.py
-│   │   ├── session.py
-│   │   └── migrations/
-│   ├── ml/
-│   │   ├── moderation_model.py
-│   │   └── cuda_check.py
-│   ├── services/
-│   │   ├── chat_service.py
-│   │   └── user_service.py
-│   └── main.py
-├── docker/
-│   ├── Dockerfile
-│   └── Dockerfile.cuda
-├── scripts/
-│   └── init_db.py
-├── tests/
-│   ├── test_api.py
-│   └── test_chat.py
-├── docs/
-│   ├── architecture.md
-│   ├── system_design.md
-│   └── threat_model.md
-├── metrics.md
-├── dailylog.md
-├── changelog.md
-├── contribution.md
-├── render.yaml
+│
+├── Dockerfile
 ├── requirements.txt
-├── README.md
+├── .env.example
+├── README.md   ← GENERATED LAST
 └── LICENSE
-
