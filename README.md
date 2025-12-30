@@ -1,6 +1,5 @@
 TrojanChat 🚀
 
-TrojanChat — L7/L8 Production-Grade LLM Application
 
 TrojanChat is a **production-ready, L7/L8-quality conversational AI platform** designed for real-time USC football discussions.  
 It demonstrates **modern LLM system design**, **ML observability**, and **clean UI/UX**, following engineering standards used at Big Tech and Big AI companies.
@@ -15,8 +14,9 @@ Tech Stack
 - **UI**: Streamlit (Chat + Metrics Dashboard)
 - **Testing**: Pytest
 - **CI/CD**: GitHub Actions
-- **Containerization**: 
-![CI](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg?branch=main)
+- **Containerization**: Docker
+
+[![CI](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.11-blue)
 ![License](https://img.shields.io/github/license/Trojan3877/TrojanChat)
 ![Last Commit](https://img.shields.io/github/last-commit/Trojan3877/TrojanChat)
