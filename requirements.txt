@@ -4,3 +4,4 @@ mlflow
 pydantic
 python-dotenv
 pytest
+pandas
