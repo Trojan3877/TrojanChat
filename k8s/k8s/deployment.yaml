@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trojan-chat
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: trojan-chat
+  template:
+    metadata:
+      labels:
+        app: trojan-chat
+    spec:
+      containers:
+        - name: trojan-chat
+          image: trojanchat:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: REDIS_URL
+              value: redis://redis:6379
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
