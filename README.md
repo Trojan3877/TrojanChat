@@ -2,238 +2,266 @@ TrojanChat 🚀
 
 <img width="1024" height="1536" alt="file_00000000bbb071f88a9c63d0ee35ebc8 (10)" src="https://github.com/user-attachments/assets/567c6e11-ede5-4528-8188-a168464291d1" />
 
-
-TrojanChat is a **production-ready, L7/L8-quality conversational AI platform** designed for real-time USC football discussions.  
-It demonstrates **modern LLM system design**, **ML observability**, and **clean UI/UX**, following engineering standards used at Big Tech and Big AI companies.
-
-
-
-Tech Stack
-
-- **LLM**: OpenAI GPT-4.1 (Responses API)
-- **Backend**: Python 3.11
-- **LLM Experiment Tracking**: MLflow
-- **UI**: Streamlit (Chat + Metrics Dashboard)
-- **Testing**: Pytest
-- **CI/CD**: GitHub Actions
-- **Containerization**: Docker
-
-[![CI](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml)
-![Python](https://img.shields.io/badge/python-3.11-blue)
-![License](https://img.shields.io/github/license/Trojan3877/TrojanChat)
-![Last Commit](https://img.shields.io/github/last-commit/Trojan3877/TrojanChat)
-![Repo Size](https://img.shields.io/github/repo-size/Trojan3877/TrojanChat)
-![Issues](https://img.shields.io/github/issues/Trojan3877/TrojanChat)
-![Stars](https://img.shields.io/github/stars/Trojan3877/TrojanChat?style=social)
+![CI](https://img.shields.io/github/actions/workflow/status/Trojan3877/TrojanChat/ci.yml?branch=main&label=CI%20Pipeline)
+![Coverage](https://img.shields.io/badge/Test%20Coverage-Enforced-success)
+![Security Scan](https://img.shields.io/badge/Security-Bandit%20%7C%20Trivy-critical)
+![Type Checking](https://img.shields.io/badge/Type%20Checking-mypy-blue)
+![Lint](https://img.shields.io/badge/Lint-flake8%20%7C%20black-informational)
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-Production-green)
+![WebSockets](https://img.shields.io/badge/WebSockets-RealTime-orange)
+![Redis](https://img.shields.io/badge/Redis-PubSub-red)
+![JWT](https://img.shields.io/badge/Auth-JWT%20%7C%20RBAC-darkred)
+![Prometheus](https://img.shields.io/badge/Observability-Prometheus-yellow)
+![Docker](https://img.shields.io/badge/Docker-Hardened-blue)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-Autoscaling-blueviolet)
+![Scalability](https://img.shields.io/badge/Scalability-Horizontal-success)
+![Architecture](https://img.shields.io/badge/Architecture-Distributed%20System-black)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 
 
- Architecture Overview
-
-TrojanChat follows a **clean, layered architecture** designed for scalability and maintainability: 
-User (Streamlit UI) ↓ Chat Service (Business Logic) ↓ Prompt Templates ↓ GPT-4.1 LLM (Responses API) ↓ MLflow (Latency, Tokens, Prompt Versions)
-**Key design principles:**
-- Thin service layers
-- No framework lock-in
-- Prompt versioning
-- Observability first
-- Testable components
 
 
- Project Structure
-TrojanChat/ ├── app/ │   ├── api/                # Controllers & health checks │   ├── core/               # LLM client, config, prompts │   ├── services/           # Chat, moderation, analytics │   └── main.py │ ├── ml/ │   ├── experiments/        # Prompt experiments │   ├── tracking/           # MLflow utilities │   └── metrics.py │ ├── streamlit_app/ │   ├── pages/              # Chat UI + Metrics Dashboard │   ├── state.py │   └── dashboard.py │ ├── tests/                  # Pytest unit tests ├── .github/workflows/      # CI pipeline ├── Dockerfile ├── requirements.txt ├── .env.example └── README.md
+ TrojanChat is a horizontally scalable, observable, and secure real-time chat platform engineered using production-grade backend architecture patterns.
+This system demonstrates:
+Distributed WebSocket handling
+JWT-based authentication
+Role-based authorization (RBAC)
+Redis Pub/Sub horizontal scaling
+Prometheus metrics exposure
+Hardened multi-stage Docker builds
+Kubernetes autoscaling deployment
+CI/CD with automated security scanning
+This project is built to reflect Staff-Level (L6+) systems thinking.
 
+System Architecture
+Client (Web / Mobile)
+        ↓
+Ingress / Load Balancer
+        ↓
+Kubernetes Cluster
+        ↓
+TrojanChat Pods (Replicas)
+        ↓
+Redis Pub/Sub Layer
+        ↓
+Metrics Endpoint (/metrics)
+        ↓
+Prometheus → Grafana
 
+Architecture Design Principles
+1. Horizontal Scalability
+Multiple backend replicas
+Redis Pub/Sub for cross-instance message sync
+Kubernetes HPA auto-scaling
+2. Observability First
+Prometheus metrics endpoint
+Structured JSON logging
+Correlation IDs
+Container health tracking
+3. Security by Design
+JWT Authentication
+Role-Based Access Control
+Token expiration
+Docker non-root execution
+CI security scanning (Bandit + Trivy)
+4. CI/CD Automation
+Lint enforcement
+Type checking
+Security scans
+Coverage tracking
+Docker image validation
 
-MLflow Usage (Production-Grade)
+Quick Start (Local Development)
 
-TrojanChat tracks **LLM inference quality** using MLflow:
+Clone Repo
+Bash
 
-- Latency (ms)
-- Token usage
-- Prompt version
-- Model version
-
-This enables:
-- Prompt A/B testing
-- Performance regression detection
-- Cost monitoring
-
-MLflow runs are logged **outside notebooks**, matching industry practice.
-
-Streamlit UI
-
-Chat Interface
-- Real-time conversational UI
-- Session-aware message history
-- Clean UX with minimal overhead
-
-Metrics Dashboard
-- Latency trends
-- Token usage visualization
-- Model observability for production readiness
-
-
- Testing Strategy
-
-- Unit tests for core services
-- LLM client interface validation
-- Business-logic isolation via mocks
-
-This ensures **safe refactoring and scaling**.
-
-
-Local Setup
- Clone Repository
-```bash
 git clone https://github.com/Trojan3877/TrojanChat.git
 cd TrojanChat
-
-Create Environment
-
+Create Virtual Environment
 Bash
-cp .env.example .env
-Add your OpenAI API key:
 
-
-OPENAI_API_KEY=sk-xxxx
+python -m venv venv
+source venv/bin/activate  # mac/linux
+venv\Scripts\activate     # windows
 Install Dependencies
-
 Bash
+
 pip install -r requirements.txt
-Run Streamlit App
-
+Run Redis (Docker)
 Bash
-streamlit run streamlit_app/dashboard.py
-🐳 Docker Run
 Copy code
+docker run -p 6379:6379 redis Set Environment Variables
 Bash
+
+export SECRET_KEY="your-secret-key"
+export REDIS_URL="redis://localhost:6379"
+Start Server
+Bash
+
+uvicorn app.main:app --reload
+Run With Docker
+Bash
+
 docker build -t trojanchat .
-docker run -p 8501:8501 trojanchat
+docker run -p 8000:8000 -e SECRET_KEY=secret -e REDIS_URL=redis://host.docker.internal:6379 trojanchat
 
-Why This Is L7 / L8 Quality
-✔ Production-ready architecture
-✔ Observability with MLflow
-✔ Clean separation of concerns
-✔ Real CI/CD
-✔ Test coverage
-✔ No over-engineering or AI-generated clutter
-This project demonstrates senior-level engineering judgment, not just model usage.
-Roadmap
-Firebase / Auth integration
-Mobile client (iOS / Android)
-Vector memory (RAG)
-Multi-model routing
-Monetization Layer
+☸ Kubernetes Deployment
 
 
-Engineering Q&A (Recruiter & Senior Reviewer Focused)
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
+kubectl apply -f k8s/hpa.yaml
+This deploys:
+3 replicas (minimum)
+Autoscaling up to 10 replicas
+CPU-based scaling trigger (70% utilization)
 
-What problem does TrojanChat solve?
-TrojanChat demonstrates how to design a production-grade LLM application that goes beyond a toy chatbot.
-It focuses on clean system boundaries, observability, and maintainability, using a real domain (sports discussion) to showcase scalable design.
+Metrics & Observability
+TrojanChat exposes:
 
-Why GPT-4.1 and not an open-source model?
-GPT-4.1 is used to demonstrate:
-Enterprise-grade reasoning quality
-Stable inference behavior
-Compatibility with modern production APIs (Responses API)
-The architecture intentionally abstracts the LLM client, making it trivial to swap in:
-Open-source models
-Anthropic
-Self-hosted inference endpoints
-This mirrors real-world multi-model routing strategies.
+Project Structure
 
-How is prompt quality evaluated?
-Prompt quality is evaluated using MLflow, tracking:
-Latency (ms)
-Token usage
-Prompt version
-Model version
-Prompt experiments are run outside notebooks, enabling:
-Reproducible evaluations
-Regression detection
-Cost-performance analysis
-This approach matches industry LLM experimentation workflows.
+app/
+ ├── core/
+ │    ├── security.py
+ │    ├── logging_config.py
+ │    ├── redis_manager.py
+ │    ├── metrics.py
+ │
+ ├── middleware/
+ │    ├── request_id_middleware.py
+ │
+ ├── dependencies/
+ │    ├── auth.py
+ │
+ ├── main.py
+ │
+k8s/
+ ├── deployment.yaml
+ ├── service.yaml
+ ├── hpa.yaml
 
-Why MLflow instead of logging to files or dashboards only?
-MLflow provides:
-Versioned experiments
-Structured metrics
-Historical comparisons
-Model/prompt traceability
-This is critical in LLM systems where prompt changes can silently degrade performance.
-
-How does TrojanChat handle scalability concerns?
-TrojanChat is designed to scale via:
-Stateless service layers
-Session abstraction
-Clear separation between UI, services, and LLM logic
-In production, this design supports:
-Horizontal scaling
-Async inference
-Load-balanced LLM gateways
-Multi-region deployment
-
-Why Streamlit for the UI?
-Streamlit is used intentionally for:
-Rapid iteration
-Low UI overhead
-Clear demonstration of system behavior
-The UI is not tightly coupled to backend logic, making it easy to replace with:
-React
-Mobile clients
-External APIs
-
-How is reliability ensured?
-Reliability is enforced through:
-Unit tests for core services
-Mocked LLM dependencies
-GitHub Actions CI on every push and PR
-This ensures:
-Safe refactoring
-Predictable behavior
-Continuous verification
-
-What makes this project L7/L8 quality?
-TrojanChat demonstrates engineering judgment, not just features:
-Clear boundaries
-Minimal abstractions
-Observability-first design
-Testability
-CI/CD discipline
-No over-engineering
-This aligns with expectations for Senior / Staff-level engineers.
-
-What would you add next in a real production environment?
-Planned next steps include:
-Vector-based memory (RAG)
-Auth + user identity
-Rate limiting
-Cost tracking per session
-Model routing
-Mobile clients
-Monetization hooks
-
-Who is this project for?
-This project is designed to demonstrate readiness for:
-AI / ML Engineer roles
-Software Engineer (LLM systems)
-Applied AI teams
-Big Tech / Big AI companies
-
-Final Note
-TrojanChat intentionally avoids:
-Over-commented AI code
-Fake complexity
-Unnecessary frameworks
-Instead, it focuses on clarity, correctness, and scalability — the traits evaluated at L7/L8 interviews.
+.github/workflows/
+ ├── ci.yml
 
 
 
-License
-MIT License — free to use, modify, and deploy.
-Author
-Corey Leath
-Aspiring AI / ML Engineer
-GitHub: https://github.com/Trojan3877
+GET /metrics
+Prometheus metrics include:
+Metric
+Type
+Description
+trojan_active_connections
+Gauge
+Active WebSocket connections
+trojan_messages_total
+Counter
+Total messages processed
+trojan_message_latency_seconds
+Histogram
+Message processing latency
+Example Prometheus scrape config:
+YAML
+Copy code
+scrape_configs:
+  - job_name: 'trojan-chat'
+    static_configs:
+      - targets: ['trojan-chat-service:8000']
+
+Security Model
+Authentication
+JWT-based token validation
+Expiration enforcement
+Token verification during WebSocket handshake
+Authorization
+Role-based access control
+Admin endpoints protected
+Secure WebSocket validation
+Container Hardening
+Multi-stage Docker builds
+Non-root runtime user
+Trivy vulnerability scanning in CI
+
+CI/CD Pipeline
+Pipeline enforces:
+flake8 lint
+black format check
+mypy type checking
+bandit security scan
+pytest coverage
+Docker image build
+Trivy container scan
+PRs fail automatically if violations occur.
+
+Performance & Scaling
+Horizontal Scale
+Redis Pub/Sub allows:
+Multi-replica sync
+Distributed WebSocket broadcasting
+Load-balanced message handling
+Autoscaling
+Kubernetes HPA:
+Min: 3 pods
+Max: 10 pods
+CPU trigger: 70%
+
+Why Redis?
+Decouples messaging from instance memory
+Enables stateless backend
+Supports distributed scaling
+Why Prometheus?
+Cloud-native observability standard
+Enables SRE monitoring
+Supports latency & load dashboards
+Why JWT?
+Stateless authentication
+Works across replicas
+Compatible with OAuth providers
+Why Kubernetes?
+Production industry standard
+Rolling deployments
+Health probes
+Auto-restart on failure
+
+Failure Scenarios & Resilience
+Scenario
+Mitigation
+Pod crash
+Kubernetes auto-restart
+High traffic spike
+HPA scaling
+Single node failure
+Replica redundancy
+Unauthorized socket
+JWT verification
+Container vulnerability
+Trivy scan in CI
+🚀 Enterprise Readiness Summary
+TrojanChat demonstrates:
+Distributed systems design
+Production security
+Observability instrumentation
+DevSecOps pipeline integration
+Cloud-native deployment model
+Staff-level architecture reasoning
+
+Extended Q&A (L6 Level)
+Q: What happens if 100,000 users connect simultaneously?
+A: Kubernetes horizontally scales replicas while Redis synchronizes cross-pod messaging. HPA increases pods based on CPU utilization.
+Q: How do you prevent unauthorized access?
+A: JWT validation occurs before WebSocket upgrade. Role-based enforcement protects privileged endpoints.
+Q: How would you support multi-region deployment?
+A: Add Redis clustering or migrate to managed distributed message brokers (e.g., Kafka). Use geo-load balancing.
+Q: How is observability handled?
+A: Prometheus metrics + structured logs + correlation IDs allow root-cause tracing.
+Q: How would you extend this to production cloud?
+A:
+Deploy on AWS EKS / GKE
+Use managed Redis (Elasticache)
+Add Ingress + TLS termination
+Add WAF for DDoS mitigation
+📜 License
+MIT License
