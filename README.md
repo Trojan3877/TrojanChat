@@ -1,23 +1,20 @@
-TrojanChat 🚀
+# 🚀 TrojanChat
 
-<img width="1024" height="1536" alt="file_00000000bbb071f88a9c63d0ee35ebc8 (10)" src="https://github.com/user-attachments/assets/567c6e11-ede5-4528-8188-a168464291d1" />
+![CI Pipeline](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-passing-success)
+![Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen)
 
-![CI](https://img.shields.io/github/actions/workflow/status/Trojan3877/TrojanChat/ci.yml?branch=main&label=CI%20Pipeline)
-![Coverage](https://img.shields.io/badge/Test%20Coverage-Enforced-success)
-![Security Scan](https://img.shields.io/badge/Security-Bandit%20%7C%20Trivy-critical)
-![Type Checking](https://img.shields.io/badge/Type%20Checking-mypy-blue)
-![Lint](https://img.shields.io/badge/Lint-flake8%20%7C%20black-informational)
-![Python](https://img.shields.io/badge/Python-3.11-blue)
-![FastAPI](https://img.shields.io/badge/FastAPI-Production-green)
-![WebSockets](https://img.shields.io/badge/WebSockets-RealTime-orange)
-![Redis](https://img.shields.io/badge/Redis-PubSub-red)
-![JWT](https://img.shields.io/badge/Auth-JWT%20%7C%20RBAC-darkred)
-![Prometheus](https://img.shields.io/badge/Observability-Prometheus-yellow)
-![Docker](https://img.shields.io/badge/Docker-Hardened-blue)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-Autoscaling-blueviolet)
-![Scalability](https://img.shields.io/badge/Scalability-Horizontal-success)
-![Architecture](https://img.shields.io/badge/Architecture-Distributed%20System-black)
-![License](https://img.shields.io/badge/License-MIT-lightgrey)
+![Docker](https://img.shields.io/badge/docker-ready-blue)
+![Kubernetes](https://img.shields.io/badge/k8s-ready-informational)
+![CI/CD](https://img.shields.io/badge/CI/CD-GitHub%20Actions-black)
+
+![OpenClaw](https://img.shields.io/badge/OpenClaw-AI%20Workflow-purple)
+![AI Assisted](https://img.shields.io/badge/AI-assisted%20engineering-blueviolet)
+
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Repo Status](https://img.shields.io/badge/status-active-success)
+![Version](https://img.shields.io/badge/version-1.0.0-orange)
 
 
 
