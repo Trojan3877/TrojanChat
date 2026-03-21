@@ -1,5 +1,4 @@
 # 🚀 TrojanChat
-
 ![CI Pipeline](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg)
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![Tests](https://img.shields.io/badge/tests-passing-success)
