@@ -1,0 +1,14 @@
+{
+  "project": "TrojanChat",
+  "ci_integration": true,
+  "permissions": {
+    "read_repo": true,
+    "write_repo": false,
+    "open_pr": true
+  },
+  "tasks": [
+    "analyze_ci_failures",
+    "suggest_code_fixes",
+    "summarize_pipeline_runs"
+  ]
+}
