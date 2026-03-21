@@ -1,47 +1,28 @@
 TrojanChat/
-├── app/
-│   ├── api/
-│   │   ├── __init__.py
-│   │   ├── chat_routes.py
-│   │   └── health.py
-│   ├── core/
-│   │   ├── config.py
-│   │   ├── llm_client.py
-│   │   ├── prompt_templates.py
-│   │   └── session_manager.py
-│   ├── services/
-│   │   ├── chat_service.py
-│   │   ├── moderation_service.py
-│   │   └── analytics_service.py
-│   ├── models/
-│   │   └── chat_message.py
-│   └── main.py
 │
-├── ml/
-│   ├── experiments/
-│   │   └── prompt_eval.py
-│   ├── tracking/
-│   │   └── mlflow_utils.py
-│   └── metrics.py
-│
-├── streamlit_app/
-│   ├── dashboard.py
-│   ├── pages/
-│   │   ├── chat_ui.py
-│   │   ├── metrics.py
-│   │   └── logs.py
-│   └── state.py
-│
-├── tests/
-│   ├── test_chat_service.py
-│   └── test_llm_client.py
+├── src/                        # Core app logic (C++ / backend / frontend)
+├── api/                        # FastAPI or Node backend (if applicable)
+├── mobile/                     # React Native (future)
+├── tests/                      # Unit + integration tests
 │
 ├── .github/
 │   └── workflows/
-│       └── ci.yml
+│       ├── ci.yml              # Build + test pipeline
+│       ├── lint.yml            # Code quality
+│       └── security.yml        # Security scanning
 │
-├── Dockerfile
-├── requirements.txt
-├── .env.example
-├── README.md   ← GENERATED LAST
-└── LICENSE
+├── openclaw/
+│   ├── config.json             # AI workflow config
+│   └── pipeline-monitor.json   # CI monitoring rules
+│
+├── docker/
+│   └── Dockerfile
+│
+├── metrics/
+│   └── metrics.md              # Performance + CI metrics
+│
+├── docs/
+│   └── architecture.md
+│
+├── README.md
+└── requirements.txt / package.json
