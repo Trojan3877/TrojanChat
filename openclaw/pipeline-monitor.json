@@ -1,0 +1,13 @@
+{
+  "monitor": "github_actions",
+  "triggers": [
+    "ci_failure",
+    "test_failure",
+    "lint_error"
+  ],
+  "actions": [
+    "summarize_issue",
+    "suggest_fix",
+    "create_pr_draft"
+  ]
+}
