@@ -1,5 +1,5 @@
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Any, List
 
 # Example in-memory storage (replace with DB later)
@@ -19,12 +19,12 @@ def send_message(input_data: Dict[str, Any]) -> Dict[str, Any]:
     message = input_data.get("message")
 
     if room not in CHAT_HISTORY:
-        return {"status": "failed", "timestamp": datetime.utcnow().isoformat()}
+        return {"status": "failed", "timestamp": datetime.now(timezone.utc).isoformat()}
 
     entry = {
         "user": user,
         "message": message,
-        "timestamp": datetime.utcnow().isoformat()
+        "timestamp": datetime.now(timezone.utc).isoformat()
     }
 
     CHAT_HISTORY[room].append(entry)

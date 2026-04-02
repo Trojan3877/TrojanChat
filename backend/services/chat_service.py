@@ -1,5 +1,6 @@
 import uuid
 import datetime
+from datetime import timezone
 from backend.config import settings
 
 
@@ -25,7 +26,7 @@ class ChatService:
         """
         Returns an ISO 8601 timestamp.
         """
-        return datetime.datetime.utcnow().isoformat()
+        return datetime.datetime.now(timezone.utc).isoformat()
 
     # -------------------------------------
     #  PUBLIC METHODS
