@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Helm
         run: |
@@ -28,7 +28,7 @@ jobs:
           helm repo index packaged-charts --url https://Trojan3877.github.io/AlgoQuant-Backtester-Signal-Engine/helm
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./packaged-charts
