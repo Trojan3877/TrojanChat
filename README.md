@@ -96,21 +96,41 @@ Install Dependencies
 Bash
 
 pip install -r requirements.txt
-Run Redis (Docker)
-Bash
-Copy code
-docker run -p 6379:6379 redis Set Environment Variables
+
+Run Streamlit App (Recommended)
 Bash
 
+streamlit run streamlit_app.py
+
+The Streamlit app provides a real-time chat UI and metrics dashboard — no external services required for the basic chat rooms. It opens automatically at http://localhost:8501.
+
+Deploy to Streamlit Community Cloud
+1. Push this repo to GitHub.
+2. Visit https://share.streamlit.io and click "New app".
+3. Set the entry-point file to `streamlit_app.py`.
+4. Add your `OPENAI_API_KEY` secret in the Streamlit Cloud secrets panel if you want LLM-powered replies.
+
+Run Backend API Server
+Bash
+
+Run Redis (Docker)
+docker run -p 6379:6379 redis
+
+Set Environment Variables
 export SECRET_KEY="your-secret-key"
 export REDIS_URL="redis://localhost:6379"
 export CACHE_ENABLED=true        # Set to "false" to disable inference caching
 export CACHE_TTL=3600            # Cache TTL in seconds (default: 1 hour)
 export MODEL_VERSION=gpt-4.1     # Model identifier included in cache key
-Start Server
+
+Start API Server
+uvicorn app.main:app --reload
+
+Run Tests
 Bash
 
-uvicorn app.main:app --reload
+pytest tests/ -q
+
 Run With Docker
 Bash
 
