@@ -5,9 +5,9 @@ class LLMClient:
         self.client = OpenAI(api_key=api_key)
 
     def generate(self, prompt: str, temperature: float = 0.4) -> str:
-        response = self.client.responses.create(
+        response = self.client.chat.completions.create(
             model="gpt-4.1",
-            input=prompt,
+            messages=[{"role": "user", "content": prompt}],
             temperature=temperature
         )
-        return response.output_text
+        return response.choices[0].message.content

@@ -49,4 +49,4 @@ EXPOSE 10000
 # ----------------------------------------
 # Start FastAPI App
 # ----------------------------------------
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "10000"]
+CMD ["uvicorn", "backend.api:app", "--host", "0.0.0.0", "--port", "10000"]
