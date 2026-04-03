@@ -104,6 +104,9 @@ Bash
 
 export SECRET_KEY="your-secret-key"
 export REDIS_URL="redis://localhost:6379"
+export CACHE_ENABLED=true        # Set to "false" to disable inference caching
+export CACHE_TTL=3600            # Cache TTL in seconds (default: 1 hour)
+export MODEL_VERSION=gpt-4.1     # Model identifier included in cache key
 Start Server
 Bash
 
@@ -169,6 +172,15 @@ Total messages processed
 trojan_message_latency_seconds
 Histogram
 Message processing latency
+trojan_cache_hits_total
+Counter
+Inference cache hits
+trojan_cache_misses_total
+Counter
+Inference cache misses
+trojan_cache_errors_total
+Counter
+Redis cache errors
 Example Prometheus scrape config:
 YAML
 Copy code

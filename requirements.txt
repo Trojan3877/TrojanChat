@@ -10,3 +10,5 @@ pandas>=2.2.3
 fastapi>=0.115.12
 uvicorn>=0.34.0
 httpx>=0.28.0
+redis>=5.0.0
+prometheus-client>=0.21.0
