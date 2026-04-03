@@ -17,6 +17,7 @@
 ![Docker](https://img.shields.io/badge/docker-ready-blue)
 ![Kubernetes](https://img.shields.io/badge/k8s-ready-informational)
 ![CI/CD](https://img.shields.io/badge/CI/CD-GitHub%20Actions-black)
+[![Streamlit App](https://img.shields.io/badge/Streamlit-Live_App-FF4B4B?logo=streamlit&logoColor=white)](https://your-app.streamlit.app)
 
 ![OpenClaw](https://img.shields.io/badge/OpenClaw-AI%20Workflow-purple)
 ![AI Assisted](https://img.shields.io/badge/AI-assisted%20engineering-blueviolet)
