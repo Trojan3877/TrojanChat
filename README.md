@@ -96,7 +96,11 @@ venv\Scripts\activate     # windows
 Install Dependencies
 Bash
 
+# Runtime dependencies only
 pip install -r requirements.txt
+
+# Development / testing dependencies (includes pytest, pytest-asyncio)
+pip install -r requirements-dev.txt
 
 Run Streamlit App (Recommended)
 Bash
