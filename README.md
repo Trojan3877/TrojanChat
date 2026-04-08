@@ -124,3 +124,10 @@ observability is treated as a first-class concern in the README and structure
 Docker and Kubernetes manifests are present
 CI is wired into the repository
 the project includes a real-time system design story rather than only static CRUD behavior.
+
+Why is TrojanChat a better portfolio piece than a simple chat app?
+Because it demonstrates real-time communication, authentication, pub/sub messaging, observability, and deployment assets instead of stopping at basic message exchange.
+What engineering concepts does it highlight?
+It highlights service decomposition, state management concerns, security, instrumentation, and infrastructure portability.
+What would you improve next for a more enterprise-ready version?
+I would add reproducible load testing, managed deployment configuration, richer monitoring dashboards, persistent message storage, and stronger CI reporting around security and coverage.
