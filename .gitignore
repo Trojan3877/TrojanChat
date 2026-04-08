@@ -52,6 +52,7 @@ docker-compose.override.yml
 .coverage
 pytest_cache/
 htmlcov/
+coverage.xml
 
 # --- Jupyter ---
 .ipynb_checkpoints/
