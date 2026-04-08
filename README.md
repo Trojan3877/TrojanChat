@@ -1,310 +1,126 @@
-![Architecture](https://img.shields.io/badge/architecture-microservices-critical)
-![Scalability](https://img.shields.io/badge/scalability-high-success)
-![Latency](https://img.shields.io/badge/latency-<150ms-brightgreen)
-
-![Observability](https://img.shields.io/badge/observability-enabled-blue)
-![Metrics](https://img.shields.io/badge/metrics-tracked-yellow)
-![Logging](https://img.shields.io/badge/logging-centralized-lightgrey)
-
-![Security](https://img.shields.io/badge/security-scanned-success)
-![Code Quality](https://img.shields.io/badge/code%20quality-A-brightgreen)
-![Maintained](https://img.shields.io/badge/maintained-yes-success)
-![CI Pipeline](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg)
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![Tests](https://img.shields.io/badge/tests-passing-success)
-![Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen)
-
+[![CI](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg)](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-backend-009688?logo=fastapi&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-UI-FF4B4B?logo=streamlit&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-pubsub-red?logo=redis&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker-ready-blue)
-![Kubernetes](https://img.shields.io/badge/k8s-ready-informational)
-![CI/CD](https://img.shields.io/badge/CI/CD-GitHub%20Actions-black)
-[![Streamlit App](https://img.shields.io/badge/Streamlit-Live_App-FF4B4B?logo=streamlit&logoColor=white)](https://your-app.streamlit.app)
-
-![OpenClaw](https://img.shields.io/badge/OpenClaw-AI%20Workflow-purple)
-![AI Assisted](https://img.shields.io/badge/AI-assisted%20engineering-blueviolet)
-
+![Kubernetes](https://img.shields.io/badge/k8s-manifests-informational)
+![Prometheus](https://img.shields.io/badge/metrics-prometheus-E6522C?logo=prometheus&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Repo Status](https://img.shields.io/badge/status-active-success)
-![Version](https://img.shields.io/badge/version-1.0.0-orange)
 
+# TrojanChat
 
+TrojanChat is a real-time chat platform designed to showcase backend systems thinking through WebSocket communication, authentication, metrics instrumentation, deployment assets, and scalable messaging patterns.
 
+This repository is intended to demonstrate production-style service architecture for a chat application, with a focus on engineering patterns rather than only UI polish.
 
+---
 
- TrojanChat is a horizontally scalable, observable, and secure real-time chat platform engineered using production-grade backend architecture patterns.
-This system demonstrates:
-Distributed WebSocket handling
-JWT-based authentication
-Role-based authorization (RBAC)
-Redis Pub/Sub horizontal scaling
-Prometheus metrics exposure
-Hardened multi-stage Docker builds
-Kubernetes autoscaling deployment
-CI/CD with automated security scanning
-This project is built to reflect Staff-Level (L6+) systems thinking.
+## Overview
 
-System Architecture
-Client (Web / Mobile)
-        ↓
-Ingress / Load Balancer
-        ↓
-Kubernetes Cluster
-        ↓
-TrojanChat Pods (Replicas)
-        ↓
-Redis Pub/Sub Layer
-        ↓
-Metrics Endpoint (/metrics)
-        ↓
-Prometheus → Grafana
+TrojanChat is built to highlight several capabilities that matter in backend and platform work:
 
-Architecture Design Principles
-1. Horizontal Scalability
-Multiple backend replicas
-Redis Pub/Sub for cross-instance message sync
-Kubernetes HPA auto-scaling
-2. Observability First
-Prometheus metrics endpoint
-Structured JSON logging
-Correlation IDs
-Container health tracking
-3. Security by Design
-JWT Authentication
-Role-Based Access Control
-Token expiration
-Docker non-root execution
-CI security scanning (Bandit + Trivy)
-4. CI/CD Automation
-Lint enforcement
-Type checking
-Security scans
-Coverage tracking
-Docker image validation
+- real-time chat behavior
+- service-oriented architecture
+- metrics and observability
+- deployment-readiness through Docker and Kubernetes assets
+- security-oriented design patterns such as JWT-based auth and role-based access control
+- support for both API-style execution and Streamlit-based interaction
 
-Quick Start (Local Development)
+The project is especially useful as a portfolio signal because it shows distributed systems concepts in a domain that recruiters understand quickly.
 
-Clone Repo
+---
+
+## What is implemented today
+
+The repository currently presents the following areas of functionality:
+
+- real-time messaging architecture
+- JWT-oriented authentication flow
+- role-aware authorization patterns
+- Redis-backed pub/sub style messaging support
+- Prometheus metrics exposure
+- Docker-based container execution
+- Kubernetes deployment manifests
+- CI workflow integration
+- a Streamlit app for an easier local demo path
+
+This gives the project value beyond a basic chat demo because it combines application logic, infrastructure concepts, and operational visibility.
+
+---
+
+## Architecture
+
+```text
+Client / UI
+    ↓
+FastAPI / application layer
+    ↓
+WebSocket chat handling
+    ↓
+Redis pub/sub for multi-instance communication
+    ↓
+Metrics endpoint
+    ↓
+Prometheus / monitoring stack
+At a high level, TrojanChat is framed as a horizontally scalable chat service rather than a single-process toy implementation.
+Why this repo is a strong portfolio signal
+This repository demonstrates engineering decisions that are useful in both backend and AI-adjacent infrastructure roles:
+stateful real-time communication patterns
+separation of security, messaging, and observability concerns
+infrastructure-aware application design
+deployment artifacts that suggest cloud portability
+a demo-friendly local path through Streamlit
+a service mindset rather than a one-file project structure
+For recruiters, it helps show that you can think about systems, not just scripts.
+Quick start
 Bash
-
 git clone https://github.com/Trojan3877/TrojanChat.git
 cd TrojanChat
-Create Virtual Environment
-Bash
-
 python -m venv venv
-source venv/bin/activate  # mac/linux
-venv\Scripts\activate     # windows
-Install Dependencies
-Bash
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
-# Runtime dependencies only
 pip install -r requirements.txt
-
-# Development / testing dependencies (includes pytest, pytest-asyncio)
 pip install -r requirements-dev.txt
-
-Run Streamlit App (Recommended)
+Run the Streamlit app:
 Bash
-
 streamlit run streamlit_app.py
-
-The Streamlit app provides a real-time chat UI and metrics dashboard — no external services required for the basic chat rooms. It opens automatically at http://localhost:8501.
-
-Deploy to Streamlit Community Cloud
-1. Push this repo to GitHub.
-2. Visit https://share.streamlit.io and click "New app".
-3. Set the entry-point file to `streamlit_app.py`.
-4. Add your `OPENAI_API_KEY` secret in the Streamlit Cloud secrets panel if you want LLM-powered replies.
-
-Run Backend API Server
+Run the backend API server:
 Bash
-
-Run Redis (Docker)
 docker run -p 6379:6379 redis
 
-Set Environment Variables
 export SECRET_KEY="your-secret-key"
 export REDIS_URL="redis://localhost:6379"
-export CACHE_ENABLED=true        # Set to "false" to disable inference caching
-export CACHE_TTL=3600            # Cache TTL in seconds (default: 1 hour)
-export MODEL_VERSION=gpt-4.1     # Model identifier included in cache key
 
-Start API Server
+uvicorn app.main:app --reload
+Local verification checklist
+A reviewer can validate the project with a few quick steps:
+Bash
+# Start Redis
+docker run -p 6379:6379 redis
+
+# Start API
 uvicorn app.main:app --reload
 
-Run Tests
-Bash
+# Run Streamlit demo
+streamlit run streamlit_app.py
 
+# Run tests
 pytest tests/ -q
 
-Run With Docker
-Bash
-
-docker build -t trojanchat .
-docker run -p 8000:8000 -e SECRET_KEY=secret -e REDIS_URL=redis://host.docker.internal:6379 trojanchat
-
-☸ Kubernetes Deployment
-
-
-kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
-kubectl apply -f k8s/hpa.yaml
-This deploys:
-3 replicas (minimum)
-Autoscaling up to 10 replicas
-CPU-based scaling trigger (70% utilization)
-
-Metrics & Observability
-TrojanChat exposes:
-
-Project Structure
-
-app/
- ├── core/
- │    ├── security.py
- │    ├── logging_config.py
- │    ├── redis_manager.py
- │    ├── metrics.py
- │
- ├── middleware/
- │    ├── request_id_middleware.py
- │
- ├── dependencies/
- │    ├── auth.py
- │
- ├── main.py
- │
-k8s/
- ├── deployment.yaml
- ├── service.yaml
- ├── hpa.yaml
-
-.github/workflows/
- ├── ci.yml
-
-
-
-GET /metrics
-Prometheus metrics include:
-Metric
-Type
-Description
-trojan_active_connections
-Gauge
-Active WebSocket connections
-trojan_messages_total
-Counter
-Total messages processed
-trojan_message_latency_seconds
-Histogram
-Message processing latency
-trojan_cache_hits_total
-Counter
-Inference cache hits
-trojan_cache_misses_total
-Counter
-Inference cache misses
-trojan_cache_errors_total
-Counter
-Redis cache errors
-Example Prometheus scrape config:
-YAML
-Copy code
-scrape_configs:
-  - job_name: 'trojan-chat'
-    static_configs:
-      - targets: ['trojan-chat-service:8000']
-
-Security Model
-Authentication
-JWT-based token validation
-Expiration enforcement
-Token verification during WebSocket handshake
-Authorization
-Role-based access control
-Admin endpoints protected
-Secure WebSocket validation
-Container Hardening
-Multi-stage Docker builds
-Non-root runtime user
-Trivy vulnerability scanning in CI
-
-CI/CD Pipeline
-Pipeline enforces:
-flake8 lint
-black format check
-mypy type checking
-bandit security scan
-pytest coverage
-Docker image build
-Trivy container scan
-PRs fail automatically if violations occur.
-
-Performance & Scaling
-Horizontal Scale
-Redis Pub/Sub allows:
-Multi-replica sync
-Distributed WebSocket broadcasting
-Load-balanced message handling
-Autoscaling
-Kubernetes HPA:
-Min: 3 pods
-Max: 10 pods
-CPU trigger: 70%
-
-Why Redis?
-Decouples messaging from instance memory
-Enables stateless backend
-Supports distributed scaling
-Why Prometheus?
-Cloud-native observability standard
-Enables SRE monitoring
-Supports latency & load dashboards
-Why JWT?
-Stateless authentication
-Works across replicas
-Compatible with OAuth providers
-Why Kubernetes?
-Production industry standard
-Rolling deployments
-Health probes
-Auto-restart on failure
-
-Failure Scenarios & Resilience
-Scenario
-Mitigation
-Pod crash
-Kubernetes auto-restart
-High traffic spike
-HPA scaling
-Single node failure
-Replica redundancy
-Unauthorized socket
-JWT verification
-Container vulnerability
-Trivy scan in CI
-🚀 Enterprise Readiness Summary
-TrojanChat demonstrates:
-Distributed systems design
-Production security
-Observability instrumentation
-DevSecOps pipeline integration
-Cloud-native deployment model
-Staff-level architecture reasoning
-
-Extended Q&A (L6 Level)
-Q: What happens if 100,000 users connect simultaneously?
-A: Kubernetes horizontally scales replicas while Redis synchronizes cross-pod messaging. HPA increases pods based on CPU utilization.
-Q: How do you prevent unauthorized access?
-A: JWT validation occurs before WebSocket upgrade. Role-based enforcement protects privileged endpoints.
-Q: How would you support multi-region deployment?
-A: Add Redis clustering or migrate to managed distributed message brokers (e.g., Kafka). Use geo-load balancing.
-Q: How is observability handled?
-A: Prometheus metrics + structured logs + correlation IDs allow root-cause tracing.
-Q: How would you extend this to production cloud?
-A:
-Deploy on AWS EKS / GKE
-Use managed Redis (Elasticache)
-Add Ingress + TLS termination
-Add WAF for DDoS mitigation
-📜 License
-MIT License
+# Inspect metrics
+curl http://localhost:8000/metrics
+This section is included intentionally to strengthen proof and reproducibility.
+Metrics and evidence
+The repository describes Prometheus metrics such as:
+active WebSocket connections
+total messages processed
+message latency histograms
+cache hit and miss behavior
+error counters
+Current portfolio-safe evidence:
+metrics are part of the project design
+observability is treated as a first-class concern in the README and structure
+Docker and Kubernetes manifests are present
+CI is wired into the repository
+the project includes a real-time system design story rather than only static CRUD behavior.
