@@ -3,7 +3,7 @@
 type Trend = {
   topic: string;
   category: string;
-  heat: "��🔥🔥" | "🔥🔥" | "🔥";
+  heat: "🔥🔥🔥" | "🔥🔥" | "🔥";
 };
 
 const TRENDING_TOPICS: Trend[] = [
