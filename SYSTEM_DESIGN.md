@@ -36,3 +36,24 @@ LangGraph Orchestrator
   └── Langfuse tracing
   ↓
 Response returned to UI
+
+LangGraph Flow
+Input
+  ↓
+Classify request
+  ├── General fan Q&A
+  ├── Recruiting
+  ├── Game recap
+  └── Personalized request
+  ↓
+Fetch memory
+  ↓
+Retrieve relevant documents from Qdrant
+  ↓
+Build prompt with memory + retrieved context
+  ↓
+Groq response generation
+  ↓
+Trace to Langfuse
+  ↓
+Return final answer
