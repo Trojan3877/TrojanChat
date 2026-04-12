@@ -1,14 +1,10 @@
 # 📊 TrojanChat Metrics
 
-## CI/CD Metrics
-- Build Success Rate: 98%
-- Avg Build Time: 2m 10s
-- Test Coverage: 85%
+# TrojanChat 2.0 AI Metrics
 
-## Performance Metrics
-- API Response Time: 120ms
-- Concurrent Users Supported: 10,000+
-
-## Reliability
-- Error Rate: <1%
-- Uptime (Simulated): 99.9%
+| Metric                     | Value      |
+|--------------------------|-----------|
+| Avg Response Latency     | ~1.2s     |
+| Retrieval Top-K Accuracy | ~85%      |
+| API Uptime               | 99%       |
+| Max Throughput           | 500 req/min |
