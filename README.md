@@ -15,7 +15,6 @@
 ![Issues](https://img.shields.io/github/issues/Trojan3877/TrojanChat)
 ![Pull Requests](https://img.shields.io/github/issues-pr/Trojan3877/TrojanChat)
 
-Below is a complete, L5-quality README for your project TrojanChat 2.0 AI—including:
 
 ✅ Live badges (renderable)
 
