@@ -4,3 +4,6 @@ groq
 cohere
 qdrant-client
 python-dotenv
+redis>=5.0.0
+openai>=1.0.0
+prometheus-client>=0.20.0
