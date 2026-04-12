@@ -22,29 +22,17 @@ This document outlines the **architecture, data flow, scalability strategy, and 
 
 ## 🧱 High-Level Architecture
 
-```text
-┌────────────┐
-│   Client   │  (Web / Mobile)
-└─────┬──────┘
-      │ HTTPS / WebSocket
-      ▼
-┌────────────┐
-│ API Layer  │  (FastAPI / REST)
-└─────┬──────┘
-      │
-      ▼
-┌────────────┐
-│ Auth Layer │  (JWT / OAuth)
-└─────┬──────┘
-      │
-      ▼
-┌────────────┐
-│ Chat Core  │  (Message Routing)
-└─────┬──────┘
-      │
-      ├───────────────┐
-      ▼               ▼
-┌────────────┐   ┌────────────┐
-│ Persistence│   │ AI Services │
-│ (Database) │   │ (CUDA / LLM)│
-└────────────┘   └────────────┘
+User
+  ↓
+Next.js Frontend (Vercel)
+  ↓
+FastAPI Backend (Render)
+  ↓
+LangGraph Orchestrator
+  ├── Memory lookup
+  ├── Retrieval from Qdrant
+  ├── Prompt assembly
+  ├── Groq LLM response
+  └── Langfuse tracing
+  ↓
+Response returned to UI
