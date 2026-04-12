@@ -19,8 +19,15 @@ def create_app() -> FastAPI:
     @app.get("/", tags=["Health"])
     async def root():
         return {
-            "message": "TrojanChat Backend Running",
+            "message": "TrojanChat API is running",
             "version": settings.API_VERSION
+        }
+
+    @app.get("/health", tags=["Health"])
+    async def health_check():
+        return {
+            "status": "ok",
+            "service": "trojanchat-backend"
         }
 
     return app
