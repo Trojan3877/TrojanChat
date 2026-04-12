@@ -10,6 +10,7 @@
 ![Qdrant](https://img.shields.io/badge/Qdrant-VectorDB-red)
 ![Groq](https://img.shields.io/badge/Groq-LLM-orange)
 ![Cohere](https://img.shields.io/badge/Cohere-Embeddings-purple)
+
 ![Structure Check](https://github.com/Trojan3877/TrojanChat/actions/workflows/structure-check.yml/badge.svg?branch=main)
 ---
 
