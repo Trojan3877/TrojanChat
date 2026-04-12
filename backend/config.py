@@ -17,14 +17,6 @@ class Settings:
     # Backend API Version
     API_VERSION: str = "v1"
 
-    # Firebase / Realtime Database Config (future)
-    FIREBASE_API_KEY: str = os.getenv("FIREBASE_API_KEY", "")
-    FIREBASE_PROJECT_ID: str = os.getenv("FIREBASE_PROJECT_ID", "")
-    FIREBASE_DB_URL: str = os.getenv("FIREBASE_DB_URL", "")
-
-    # Websocket / Realtime Layer
-    USE_FIREBASE: bool = os.getenv("USE_FIREBASE", "true").lower() == "true"
-
     # Local development settings
     HOST: str = os.getenv("HOST", "0.0.0.0")
     PORT: int = int(os.getenv("PORT", "10000"))
