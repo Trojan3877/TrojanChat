@@ -1,4 +1,4 @@
-![CI](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg?branch=main)
 ![Last Commit](https://img.shields.io/github/last-commit/Trojan3877/TrojanChat)
 ![Repo Size](https://img.shields.io/github/repo-size/Trojan3877/TrojanChat)
 ![Stars](https://img.shields.io/github/stars/Trojan3877/TrojanChat?style=social)
