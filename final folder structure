@@ -96,3 +96,18 @@ trojanchat-2.0-ai/
 ├── METRICS.md
 ├── LICENSE
 └── .gitignore
+
+frontend/
+├── app/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   ├── ChatMessage.tsx
+│   ├── ChatWindow.tsx
+│   └── PromptBox.tsx
+├── lib/
+│   └── api.ts
+├── package.json
+├── tsconfig.json
+└── next.config.js
