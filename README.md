@@ -27,9 +27,6 @@
 ✅ Clean, Big Tech–style structure
 
 
-You can copy/paste this directly into your README.md.
-
-
 TrojanChat 2.0 AI — Intelligent USC Fan Platform
 
       
