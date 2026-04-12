@@ -3,7 +3,6 @@
 ![Repo Size](https://img.shields.io/github/repo-size/Trojan3877/TrojanChat)
 ![Stars](https://img.shields.io/github/stars/Trojan3877/TrojanChat?style=social)
 ![License](https://img.shields.io/github/license/Trojan3877/TrojanChat)
-
 ![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)
 ![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi)
