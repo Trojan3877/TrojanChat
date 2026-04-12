@@ -224,10 +224,10 @@ export default function ChatWindow() {
         {SAMPLE_PROMPTS.map((prompt) => (
           <button
             key={prompt}
+            disabled={isLoading}
             onClick={() => {
               if (!isLoading) handleSend(prompt);
             }}
-            disabled={isLoading}
             title={prompt}
             style={{
               textAlign: "left",

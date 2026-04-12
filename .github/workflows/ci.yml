@@ -10,6 +10,8 @@ jobs:
   backend:
     name: Backend – Python 3.10
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout
@@ -31,6 +33,8 @@ jobs:
   frontend:
     name: Frontend – Node 20
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout
