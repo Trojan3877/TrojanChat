@@ -96,7 +96,8 @@ def test_generate_response_includes_system_prompt():
         client.generate_response("Hi", system_prompt="You are helpful.")
 
         call_args = mock_create.call_args
-        messages = call_args.kwargs.get("messages") or call_args.args[0]
+        messages = call_args.kwargs.get("messages") or (call_args.args[0] if call_args.args else None)
+        assert messages is not None, "messages argument not found in call"
         roles = [m["role"] for m in messages]
         assert roles[0] == "system"
         assert roles[-1] == "user"
