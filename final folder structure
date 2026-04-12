@@ -1,28 +1,98 @@
-TrojanChat/
+trojanchat-2.0-ai/
 │
-├── src/                        # Core app logic (C++ / backend / frontend)
-├── api/                        # FastAPI or Node backend (if applicable)
-├── mobile/                     # React Native (future)
-├── tests/                      # Unit + integration tests
+├── frontend/
+│   ├── app/
+│   │   ├── page.tsx
+│   │   ├── chat/
+│   │   ├── dashboard/
+│   │   ├── recruiting/
+│   │   └── trends/
+│   ├── components/
+│   │   ├── ChatWindow.tsx
+│   │   ├── PromptBox.tsx
+│   │   ├── Sidebar.tsx
+│   │   ├── TrendCard.tsx
+│   │   └── RecruitingCard.tsx
+│   ├── lib/
+│   │   └── api.ts
+│   ├── public/
+│   ├── package.json
+│   └── next.config.js
+│
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── api/
+│   │   │   ├── chat.py
+│   │   │   ├── users.py
+│   │   │   ├── memory.py
+│   │   │   ├── recruiting.py
+│   │   │   └── trends.py
+│   │   ├── core/
+│   │   │   ├── config.py
+│   │   │   ├── logging.py
+│   │   │   └── security.py
+│   │   ├── services/
+│   │   │   ├── chat_service.py
+│   │   │   ├── retrieval_service.py
+│   │   │   ├── memory_service.py
+│   │   │   ├── recruiting_service.py
+│   │   │   └── analytics_service.py
+│   │   ├── schemas/
+│   │   │   ├── chat.py
+│   │   │   ├── memory.py
+│   │   │   └── recruiting.py
+│   │   └── db/
+│   │       └── qdrant_client.py
+│   ├── requirements.txt
+│   ├── Dockerfile
+│   └── render.yaml
+│
+├── ai/
+│   ├── graph/
+│   │   ├── langgraph_flow.py
+│   │   ├── nodes.py
+│   │   └── state.py
+│   ├── llm/
+│   │   └── groq_client.py
+│   ├── embeddings/
+│   │   └── cohere_embedder.py
+│   ├── retrieval/
+│   │   ├── qdrant_search.py
+│   │   └── reranker.py
+│   ├── prompts/
+│   │   ├── system_prompt.txt
+│   │   ├── recruiting_prompt.txt
+│   │   └── recap_prompt.txt
+│   └── observability/
+│       └── langfuse_client.py
+│
+├── data/
+│   ├── raw/
+│   │   ├── recruiting_notes.json
+│   │   ├── roster_context.json
+│   │   └── game_summaries.json
+│   ├── processed/
+│   └── ingestion/
+│       ├── chunk_documents.py
+│       ├── embed_documents.py
+│       └── load_qdrant.py
+│
+├── tests/
+│   ├── test_chat_api.py
+│   ├── test_retrieval.py
+│   ├── test_memory.py
+│   └── test_langgraph_flow.py
 │
 ├── .github/
 │   └── workflows/
-│       ├── ci.yml              # Build + test pipeline
-│       ├── lint.yml            # Code quality
-│       └── security.yml        # Security scanning
+│       ├── ci.yml
+│       └── lint.yml
 │
-├── openclaw/
-│   ├── config.json             # AI workflow config
-│   └── pipeline-monitor.json   # CI monitoring rules
-│
-├── docker/
-│   └── Dockerfile
-│
-├── metrics/
-│   └── metrics.md              # Performance + CI metrics
-│
-├── docs/
-│   └── architecture.md
-│
+├── .env.example
+├── docker-compose.yml
 ├── README.md
-└── requirements.txt / package.json
+├── ARCHITECTURE.md
+├── METRICS.md
+├── LICENSE
+└── .gitignore
