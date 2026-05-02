@@ -1,0 +1,6 @@
+apiVersion: v2
+name: trojanchat
+description: A Helm chart for TrojanChat – the real-time USC football discussion platform
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

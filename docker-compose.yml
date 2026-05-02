@@ -1,40 +1,14 @@
-version: "3.9"
+version: "3.8"
 
 services:
-  api:
-    build: .
-    container_name: trojanchat-api
+  qdrant:
+    image: qdrant/qdrant
     ports:
-      - "10000:10000"
-    env_file:
-      - .env
+      - "6333:6333"
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
     depends_on:
-      - mongo
-      - redis
-    restart: unless-stopped
-
-    # --- GPU Optional ---
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - capabilities: [gpu]
-
-  mongo:
-    image: mongo:7
-    container_name: trojanchat-mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo_data:/data/db
-    restart: unless-stopped
-
-  redis:
-    image: redis:7
-    container_name: trojanchat-redis
-    ports:
-      - "6379:6379"
-    restart: unless-stopped
-
-volumes:
-  mongo_data:
+      - qdrant

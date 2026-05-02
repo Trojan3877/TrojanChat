@@ -6,7 +6,7 @@ Thanks for your interest in contributing!
 - Follow PEP8 for Python code
 - Write clear commit messages
 - Add tests for new features
-- Update metrics.md if behavior changes
+- Update Metrics.MD if behavior changes
 
 ## Workflow
 1. Fork the repo

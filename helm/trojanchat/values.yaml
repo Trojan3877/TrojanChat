@@ -1,0 +1,26 @@
+replicaCount: 2
+
+image:
+  repository: trojan3877/trojanchat
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 10000
+
+ingress:
+  enabled: false
+  className: ""
+  host: trojanchat.example.com
+  tls: false
+
+resources: {}
+
+env:
+  OPENAI_API_KEY: ""
+  REDIS_URL: "redis://trojanchat-redis:6379"
+  CACHE_ENABLED: "true"
+  CACHE_TTL: "3600"
+  MODEL_VERSION: "gpt-4.1"

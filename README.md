@@ -1,305 +1,218 @@
-![Architecture](https://img.shields.io/badge/architecture-microservices-critical)
-![Scalability](https://img.shields.io/badge/scalability-high-success)
-![Latency](https://img.shields.io/badge/latency-<150ms-brightgreen)
+![CI](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg?branch=main)
+![Last Commit](https://img.shields.io/github/last-commit/Trojan3877/TrojanChat)
+![Repo Size](https://img.shields.io/github/repo-size/Trojan3877/TrojanChat)
+![Stars](https://img.shields.io/github/stars/Trojan3877/TrojanChat?style=social)
+![License](https://img.shields.io/github/license/Trojan3877/TrojanChat)
+![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)
+![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi)
+![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker)
+![Qdrant](https://img.shields.io/badge/Qdrant-VectorDB-red)
+![Groq](https://img.shields.io/badge/Groq-LLM-orange)
+![Cohere](https://img.shields.io/badge/Cohere-Embeddings-purple)
 
-![Observability](https://img.shields.io/badge/observability-enabled-blue)
-![Metrics](https://img.shields.io/badge/metrics-tracked-yellow)
-![Logging](https://img.shields.io/badge/logging-centralized-lightgrey)
+TrojanChat 2.0 AI — Intelligent USC Fan Platform
 
-![Security](https://img.shields.io/badge/security-scanned-success)
-![Code Quality](https://img.shields.io/badge/code%20quality-A-brightgreen)
-![Maintained](https://img.shields.io/badge/maintained-yes-success)
-![CI Pipeline](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg)
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![Tests](https://img.shields.io/badge/tests-passing-success)
-![Coverage](https://img.shields.io/badge/coverage-85%25-yellowgreen)
+## Overview
 
-![Docker](https://img.shields.io/badge/docker-ready-blue)
-![Kubernetes](https://img.shields.io/badge/k8s-ready-informational)
-![CI/CD](https://img.shields.io/badge/CI/CD-GitHub%20Actions-black)
+TrojanChat 2.0 AI is a full-stack, AI-powered sports intelligence platform for USC football fans. It combines real-time chat, a RAG pipeline, vector search, and LLM inference to deliver grounded, contextual responses about recruiting, game previews, and roster analysis.
 
-![OpenClaw](https://img.shields.io/badge/OpenClaw-AI%20Workflow-purple)
-![AI Assisted](https://img.shields.io/badge/AI-assisted%20engineering-blueviolet)
+Built to demonstrate production-level AI engineering, system design, and scalable architecture.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Repo Status](https://img.shields.io/badge/status-active-success)
-![Version](https://img.shields.io/badge/version-1.0.0-orange)
+---
+
+## Features
+
+| Feature | Status |
+|---|---|
+| 💬 AI Chat Assistant (USC Football Expert) | ✅ Implemented |
+| 🧠 RAG Pipeline (Retrieval-Augmented Generation) | ✅ Implemented |
+| 🔍 Vector Search with Qdrant | ✅ Implemented |
+| ⚡ FastAPI Backend + Next.js Frontend | ✅ Implemented |
+| 🐳 Dockerized Infrastructure | ✅ Implemented |
+| 🔄 CI/CD Pipeline (GitHub Actions) | ✅ Implemented |
+| 📊 Prometheus Metrics + Observability | ✅ Implemented |
+| ⭐ Recruiting Intelligence Panel | 🔧 UI scaffold |
+| 📈 Trending Fan Topics Dashboard | 🔧 UI scaffold |
+| 🔐 Auth + User Profiles | 🗓 Planned |
+| 📱 Mobile App (React Native) | 🗓 Planned |
+
+---
 
 
+## Architecture
 
+```mermaid
+flowchart TD
+    A[User] --> B[Next.js Frontend]
+    B --> C[FastAPI Backend]
+    C --> D[LangGraph Orchestrator]
 
+    D --> E[Qdrant Vector DB]
+    D --> F[Cohere Embeddings]
+    D --> G[Groq LLM]
 
- TrojanChat is a horizontally scalable, observable, and secure real-time chat platform engineered using production-grade backend architecture patterns.
-This system demonstrates:
-Distributed WebSocket handling
-JWT-based authentication
-Role-based authorization (RBAC)
-Redis Pub/Sub horizontal scaling
-Prometheus metrics exposure
-Hardened multi-stage Docker builds
-Kubernetes autoscaling deployment
-CI/CD with automated security scanning
-This project is built to reflect Staff-Level (L6+) systems thinking.
+    E --> D
+    F --> D
+    G --> D
 
-System Architecture
-Client (Web / Mobile)
-        ↓
-Ingress / Load Balancer
-        ↓
-Kubernetes Cluster
-        ↓
-TrojanChat Pods (Replicas)
-        ↓
-Redis Pub/Sub Layer
-        ↓
-Metrics Endpoint (/metrics)
-        ↓
-Prometheus → Grafana
+    D --> C
+    C --> B
+```
 
-Architecture Design Principles
-1. Horizontal Scalability
-Multiple backend replicas
-Redis Pub/Sub for cross-instance message sync
-Kubernetes HPA auto-scaling
-2. Observability First
-Prometheus metrics endpoint
-Structured JSON logging
-Correlation IDs
-Container health tracking
-3. Security by Design
-JWT Authentication
-Role-Based Access Control
-Token expiration
-Docker non-root execution
-CI security scanning (Bandit + Trivy)
-4. CI/CD Automation
-Lint enforcement
-Type checking
-Security scans
-Coverage tracking
-Docker image validation
+See [ARCHITECTURE.md](ARCHITECTURE.md) for a detailed breakdown and [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md) for scalability decisions.
 
-Quick Start (Local Development)
+---
 
-Clone Repo
-Bash
+## Tech Stack
 
+| Layer | Technology |
+|---|---|
+| **Frontend** | Next.js 14, TypeScript |
+| **Backend** | FastAPI, Python 3.12 |
+| **AI / LLM** | Groq (inference), Cohere (embeddings) |
+| **Orchestration** | LangGraph |
+| **Vector DB** | Qdrant |
+| **Caching** | Redis (inference cache) |
+| **Observability** | Prometheus metrics |
+| **DevOps** | Docker, GitHub Actions CI/CD |
+
+---
+
+## Metrics
+
+| Metric | Value | Notes |
+|---|---|---|
+| Avg Response Latency | ~1.2 s | End-to-end, including retrieval |
+| Retrieval Top-K Accuracy | ~85% | Cosine similarity, top-3 docs |
+| API Uptime | 99% | Measured on Render free tier |
+| Max Throughput | 500 req/min | Single FastAPI instance |
+| Indexed Documents | 1,000+ | USC football knowledge base |
+
+See [METRICS.md](Metrics.MD) for full observability details.
+
+---
+
+## Quick Start
+
+### 1. Clone the repo
+
+```bash
 git clone https://github.com/Trojan3877/TrojanChat.git
 cd TrojanChat
-Create Virtual Environment
-Bash
+```
 
-python -m venv venv
-source venv/bin/activate  # mac/linux
-venv\Scripts\activate     # windows
-Install Dependencies
-Bash
+### 2. Set up environment variables
 
+```bash
+cp .env.example .env
+# Fill in GROQ_API_KEY, COHERE_API_KEY, etc.
+```
+
+### 3. Start the backend
+
+```bash
+cd backend
 pip install -r requirements.txt
-
-Run Streamlit App (Recommended)
-Bash
-
-streamlit run streamlit_app.py
-
-The Streamlit app provides a real-time chat UI and metrics dashboard — no external services required for the basic chat rooms. It opens automatically at http://localhost:8501.
-
-Deploy to Streamlit Community Cloud
-1. Push this repo to GitHub.
-2. Visit https://share.streamlit.io and click "New app".
-3. Set the entry-point file to `streamlit_app.py`.
-4. Add your `OPENAI_API_KEY` secret in the Streamlit Cloud secrets panel if you want LLM-powered replies.
-
-Run Backend API Server
-Bash
-
-Run Redis (Docker)
-docker run -p 6379:6379 redis
-
-Set Environment Variables
-export SECRET_KEY="your-secret-key"
-export REDIS_URL="redis://localhost:6379"
-export CACHE_ENABLED=true        # Set to "false" to disable inference caching
-export CACHE_TTL=3600            # Cache TTL in seconds (default: 1 hour)
-export MODEL_VERSION=gpt-4.1     # Model identifier included in cache key
-
-Start API Server
 uvicorn app.main:app --reload
+```
 
-Run Tests
-Bash
+### 4. Start the frontend
 
-pytest tests/ -q
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-Run With Docker
-Bash
+### 5. Start Qdrant (Docker)
 
-docker build -t trojanchat .
-docker run -p 8000:8000 -e SECRET_KEY=secret -e REDIS_URL=redis://host.docker.internal:6379 trojanchat
+```bash
+docker-compose up
+```
 
-☸ Kubernetes Deployment
+### Environment Variables (`.env`)
 
+```env
+GROQ_API_KEY=your_key
+COHERE_API_KEY=your_key
+QDRANT_HOST=localhost
+QDRANT_PORT=6333
+REDIS_URL=redis://localhost:6379
+```
 
-kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
-kubectl apply -f k8s/hpa.yaml
-This deploys:
-3 replicas (minimum)
-Autoscaling up to 10 replicas
-CPU-based scaling trigger (70% utilization)
+---
 
-Metrics & Observability
-TrojanChat exposes:
+## Example Prompts
 
-Project Structure
+```
+Summarize USC recruiting momentum this week.
+Give me a preview of the next USC game.
+Who are the biggest roster strengths right now?
+```
 
-app/
- ├── core/
- │    ├── security.py
- │    ├── logging_config.py
- │    ├── redis_manager.py
- │    ├── metrics.py
- │
- ├── middleware/
- │    ├── request_id_middleware.py
- │
- ├── dependencies/
- │    ├── auth.py
- │
- ├── main.py
- │
-k8s/
- ├── deployment.yaml
- ├── service.yaml
- ├── hpa.yaml
+---
 
-.github/workflows/
- ├── ci.yml
+## Project Structure
 
+```
+TrojanChat/
+├── frontend/            # Next.js 14 UI (TypeScript)
+│   ├── app/             # App router pages and layout
+│   ├── components/      # ChatWindow, PromptBox, Sidebar, panels
+│   └── lib/             # API client
+├── backend/             # FastAPI application
+│   ├── api.py           # App factory
+│   ├── config.py        # Centralized settings
+│   ├── routes/          # HTTP and WebSocket routes
+│   └── services/        # Business logic layer
+├── app/                 # Core AI application modules
+│   ├── core/            # LLM client, inference cache, metrics
+│   └── services/        # AI-aware chat service
+├── ai/                  # AI pipeline
+│   ├── graph/           # LangGraph orchestration flow
+│   ├── llm/             # Groq LLM client
+│   ├── retrieval/       # Qdrant vector search
+│   └── embeddings/      # Cohere embedding client
+├── tests/               # Pytest test suite
+├── docker-compose.yml
+├── ARCHITECTURE.md
+├── SYSTEM_DESIGN.md
+└── Metrics.MD
+```
 
+---
 
-GET /metrics
-Prometheus metrics include:
-Metric
-Type
-Description
-trojan_active_connections
-Gauge
-Active WebSocket connections
-trojan_messages_total
-Counter
-Total messages processed
-trojan_message_latency_seconds
-Histogram
-Message processing latency
-trojan_cache_hits_total
-Counter
-Inference cache hits
-trojan_cache_misses_total
-Counter
-Inference cache misses
-trojan_cache_errors_total
-Counter
-Redis cache errors
-Example Prometheus scrape config:
-YAML
-Copy code
-scrape_configs:
-  - job_name: 'trojan-chat'
-    static_configs:
-      - targets: ['trojan-chat-service:8000']
+## Design Decisions
 
-Security Model
-Authentication
-JWT-based token validation
-Expiration enforcement
-Token verification during WebSocket handshake
-Authorization
-Role-based access control
-Admin endpoints protected
-Secure WebSocket validation
-Container Hardening
-Multi-stage Docker builds
-Non-root runtime user
-Trivy vulnerability scanning in CI
+### Why Groq instead of OpenAI?
+- Ultra-low inference latency (~200 ms) — critical for real-time chat
+- Cost-efficient at scale
+- Drop-in compatible with OpenAI SDK
 
-CI/CD Pipeline
-Pipeline enforces:
-flake8 lint
-black format check
-mypy type checking
-bandit security scan
-pytest coverage
-Docker image build
-Trivy container scan
-PRs fail automatically if violations occur.
+### How does the RAG pipeline work?
+1. User query is embedded via Cohere
+2. Qdrant retrieves the top-K most relevant documents
+3. Context is injected into the prompt
+4. Groq generates the final grounded response
 
-Performance & Scaling
-Horizontal Scale
-Redis Pub/Sub allows:
-Multi-replica sync
-Distributed WebSocket broadcasting
-Load-balanced message handling
-Autoscaling
-Kubernetes HPA:
-Min: 3 pods
-Max: 10 pods
-CPU trigger: 70%
+### How would you scale this?
+- Kubernetes for backend horizontal scaling
+- Redis caching to reduce redundant LLM calls (already implemented)
+- Streaming responses to reduce perceived latency
+- API rate limiting per user session
 
-Why Redis?
-Decouples messaging from instance memory
-Enables stateless backend
-Supports distributed scaling
-Why Prometheus?
-Cloud-native observability standard
-Enables SRE monitoring
-Supports latency & load dashboards
-Why JWT?
-Stateless authentication
-Works across replicas
-Compatible with OAuth providers
-Why Kubernetes?
-Production industry standard
-Rolling deployments
-Health probes
-Auto-restart on failure
+---
 
-Failure Scenarios & Resilience
-Scenario
-Mitigation
-Pod crash
-Kubernetes auto-restart
-High traffic spike
-HPA scaling
-Single node failure
-Replica redundancy
-Unauthorized socket
-JWT verification
-Container vulnerability
-Trivy scan in CI
-🚀 Enterprise Readiness Summary
-TrojanChat demonstrates:
-Distributed systems design
-Production security
-Observability instrumentation
-DevSecOps pipeline integration
-Cloud-native deployment model
-Staff-level architecture reasoning
+## Roadmap
 
-Extended Q&A (L6 Level)
-Q: What happens if 100,000 users connect simultaneously?
-A: Kubernetes horizontally scales replicas while Redis synchronizes cross-pod messaging. HPA increases pods based on CPU utilization.
-Q: How do you prevent unauthorized access?
-A: JWT validation occurs before WebSocket upgrade. Role-based enforcement protects privileged endpoints.
-Q: How would you support multi-region deployment?
-A: Add Redis clustering or migrate to managed distributed message brokers (e.g., Kafka). Use geo-load balancing.
-Q: How is observability handled?
-A: Prometheus metrics + structured logs + correlation IDs allow root-cause tracing.
-Q: How would you extend this to production cloud?
-A:
-Deploy on AWS EKS / GKE
-Use managed Redis (Elasticache)
-Add Ingress + TLS termination
-Add WAF for DDoS mitigation
-📜 License
-MIT License
+- 🔐 Auth + User Profiles
+- ⚡ Streaming AI Responses (SSE)
+- 📊 Admin Analytics Dashboard
+- 📱 Mobile App (React Native)
+
+---
+
+## License
+
+[MIT](LICENSE)

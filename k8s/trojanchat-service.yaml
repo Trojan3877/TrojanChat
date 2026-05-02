@@ -4,9 +4,9 @@ metadata:
   name: trojan-chat-service
 spec:
   selector:
-    app: trojan-chat
+    app: trojanchat
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8000
+      targetPort: 10000
   type: ClusterIP

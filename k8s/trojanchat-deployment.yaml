@@ -18,7 +18,7 @@ spec:
         - name: trojanchat
           image: your-docker-registry/trojanchat-service:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 10000
           env:
             - name: FIREBASE_SERVICE_ACCOUNT
               value: "/etc/secrets/serviceAccountKey.json"
