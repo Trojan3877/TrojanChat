@@ -3,6 +3,10 @@ import json
 import logging
 import sys
 
+# Import your defensive security middleware layer
+# (Adjust this to "from backendsecurity import BackendSecurityManager" if placed in the root directory)
+from app.middleware.backendsecurity import BackendSecurityManager
+
 # Configure production-grade structured logging
 logging.basicConfig(
     level=logging.INFO,
@@ -52,30 +56,32 @@ class ProductionChatServer:
 
         try:
             while True:
+                # 1. Read raw byte buffers off the socket stream
                 data = await reader.read(4096)
                 if not data:
                     break # Client closed the connection stream cleanly
                 
+                # 2. Pass incoming raw byte buffers directly through your hardening middleware
                 try:
-                    # Enforce strict syntax parsing boundaries
-                    incoming_msg = json.loads(data.decode('utf-8'))
+                    secure_payload = BackendSecurityManager.validate_and_sanitize_payload(data)
                     
-                    # Core sanitization to prevent message string payload injection
-                    sanitized_text = str(incoming_msg.get("text", "")).strip()
-                    if not sanitized_text:
-                        continue
-                        
                     broadcast_payload = {
-                        "user": str(incoming_msg.get("user", "Anonymous")).strip(),
-                        "text": sanitized_text,
+                        "user": secure_payload["user"],
+                        "text": secure_payload["text"],
                         "timestamp": asyncio.get_event_loop().time()
                     }
                     
+                    # 3. Transmit the secured data to all other connected sockets
                     await self.broadcast(broadcast_payload, exclude_writer=writer)
                     
-                except json.JSONDecodeError:
-                    logging.warning(f"Protocol violation: Malformed packet dropped from {client_peer}")
-                    continue
+                except (json.JSONDecodeError, ValueError) as security_err:
+                    # Document the intrusion/malformed vector structurally inside the SIEM auditor
+                    BackendSecurityManager.audit_security_event(
+                        event_type="MALFORMED_INPUT_REJECTED",
+                        details=str(security_err),
+                        IP_peer=client_peer
+                    )
+                    continue # Cleanly drop malicious packet frame and keep the socket engine open
 
         except asyncio.CancelledError:
             pass
