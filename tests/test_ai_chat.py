@@ -32,7 +32,7 @@ def app_with_mock_ai():
     """
     # Patch TrojanChatAI so importing backend.app.main doesn't try to
     # connect to Groq or Qdrant at module load time.
-    with patch("ai.graph.langgraph_flow.TrojanChatAI.__init__", return_value=None), \
+    with patch("ai.graph.TrojanChatAI.__init__", return_value=None), \
          patch("ai.llm.groq_client.GroqClient.__init__", return_value=None), \
          patch("ai.retrieval.qdrant_search.QdrantSearch.__init__", return_value=None), \
          patch("ai.embeddings.cohere_embedder.CohereEmbedder.__init__", return_value=None):
