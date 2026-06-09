@@ -49,12 +49,6 @@ The platform splits operations across an event-driven system architecture to eli
     python client.py "Corey"
     ```
 
----
-
-## 🐳 Production Container Deployment
-
-This repository uses a defensive multi-stage `Dockerfile` compilation sandbox strategy. The container compiles system wheels in Stage 1, then ports the output to a stripped runtime image to dramatically shrink attack vectors and exploit spaces.
-
 Q1: Why use an Asynchronous Event Loop (asyncio) instead of traditional Multi-threading?
 A: Multi-threaded architectures assign a dedicated operating system thread to every single connected client socket. When scaling up to thousands of concurrent users, this model hits a bottleneck due to extreme RAM consumption (each thread pre-allocates stack memory) and massive CPU overhead caused by continuous thread context-switching.
 
