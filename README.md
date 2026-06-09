@@ -11,7 +11,10 @@ TrojanChat is a production-hardened, multi-client chat architecture optimized fo
 
 ---
 
-## 🏗️ Architectural Overview
+ Architectural Overview
+
+ <img width="1024" height="572" alt="image" src="https://github.com/user-attachments/assets/d9d6fa43-1152-4550-89b6-bcf2cebdf248" />
+
 
 The platform splits operations across an event-driven system architecture to eliminate thread-starvation issues under scale.
 
