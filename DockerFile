@@ -1,14 +1,32 @@
-FROM python:3.12-slim
+# ==============================================================================
+# STAGE 1: Compilation Sandbox Environment
+# ==============================================================================
+FROM python:3.11-slim AS builder
 
 WORKDIR /app
 
-COPY . .
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt .
+RUN pip install --no-cache-dir --user -r requirements.txt
 
-RUN useradd -m -u 10000 trojanchat && chown -R trojanchat:trojanchat /app
-USER trojanchat
+# ==============================================================================
+# STAGE 2: Minimum Footprint Production Runtime Engine
+# ==============================================================================
+FROM python:3.11-slim AS runner
 
-EXPOSE 10000
+WORKDIR /app
 
-CMD ["uvicorn", "backend.api:app", "--host", "0.0.0.0", "--port", "10000"]
+# Enforce strict Least Privilege Principles by using a low-privilege runtime account
+RUN useradd -u 8888 apprunner && chown -R apprunner:apprunner /app
+USER apprunner
+
+COPY --from=builder /root/.local /home/apprunner/.local
+COPY --chown=apprunner:apprunner . .
+
+ENV PATH=/home/apprunner/.local/bin:$PATH
+EXPOSE 8888
+
+CMD ["python", "server.py"]
