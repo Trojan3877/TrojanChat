@@ -22,6 +22,7 @@ This document outlines the **architecture, data flow, scalability strategy, and 
 
 ## 🧱 High-Level Architecture
 
+```
 User
   ↓
 Next.js Frontend (Vercel)
@@ -32,12 +33,14 @@ LangGraph Orchestrator
   ├── Memory lookup
   ├── Retrieval from Qdrant
   ├── Prompt assembly
-  ├── Groq LLM response
-  └── Langfuse tracing
+  └── Groq LLM response
   ↓
 Response returned to UI
+```
 
-LangGraph Flow
+### LangGraph Flow
+
+```
 Input
   ↓
 Classify request
@@ -46,14 +49,11 @@ Classify request
   ├── Game recap
   └── Personalized request
   ↓
-Fetch memory
-  ↓
 Retrieve relevant documents from Qdrant
   ↓
-Build prompt with memory + retrieved context
+Build prompt with retrieved context
   ↓
 Groq response generation
   ↓
-Trace to Langfuse
-  ↓
 Return final answer
+```
