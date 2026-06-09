@@ -1,218 +1,87 @@
-![CI](https://github.com/Trojan3877/TrojanChat/actions/workflows/ci.yml/badge.svg?branch=main)
-![Last Commit](https://img.shields.io/github/last-commit/Trojan3877/TrojanChat)
-![Repo Size](https://img.shields.io/github/repo-size/Trojan3877/TrojanChat)
-![Stars](https://img.shields.io/github/stars/Trojan3877/TrojanChat?style=social)
-![License](https://img.shields.io/github/license/Trojan3877/TrojanChat)
-![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)
-![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)
-![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi)
-![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker)
-![Qdrant](https://img.shields.io/badge/Qdrant-VectorDB-red)
-![Groq](https://img.shields.io/badge/Groq-LLM-orange)
-![Cohere](https://img.shields.io/badge/Cohere-Embeddings-purple)
+# TrojanChat
 
-TrojanChat 2.0 AI — Intelligent USC Fan Platform
+🛡️ **Enterprise-Grade Asynchronous Real-Time Messaging Platform**
 
-## Overview
+[![Build Status](https://img.shields.io/github/actions/workflow/status/Trojan3877/TrojanChat/deploy.yml?branch=main&style=flat-square)](https://github.com/Trojan3877/TrojanChat/actions)
+[![Code Quality](https://img.shields.io/lgtm/grade/javascript/g/Trojan3877/TrojanChat.svg?style=flat-square)](https://github.com/Trojan3877/TrojanChat)
+[![Security: Bandit](https://img.shields.io/badge/security-bandit-yellow.svg?style=flat-square)](https://github.com/PyCQA/bandit)
+[![Docker Image Version](https://img.shields.io/docker/v/trojan3877/trojanchat?sort=semver&style=flat-square)](https://hub.docker.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Production Ready](https://img.shields.io/badge/status-production--ready-success?style=flat-square&color=28a745)](https://github.com/Trojan3877/TrojanChat)
 
-TrojanChat 2.0 AI is a full-stack, AI-powered sports intelligence platform for USC football fans. It combines real-time chat, a RAG pipeline, vector search, and LLM inference to deliver grounded, contextual responses about recruiting, game previews, and roster analysis.
-
-Built to demonstrate production-level AI engineering, system design, and scalable architecture.
+TrojanChat is a production-hardened, multi-client chat architecture optimized for high-concurrency environments. Moving away from standard blocking network sockets, this platform leverages asynchronous event loops to maintain thousands of concurrent connections efficiently while maintaining structural memory efficiency.
 
 ---
 
-## Features
+## 🏗️ Architectural Overview
 
-| Feature | Status |
-|---|---|
-| 💬 AI Chat Assistant (USC Football Expert) | ✅ Implemented |
-| 🧠 RAG Pipeline (Retrieval-Augmented Generation) | ✅ Implemented |
-| 🔍 Vector Search with Qdrant | ✅ Implemented |
-| ⚡ FastAPI Backend + Next.js Frontend | ✅ Implemented |
-| 🐳 Dockerized Infrastructure | ✅ Implemented |
-| 🔄 CI/CD Pipeline (GitHub Actions) | ✅ Implemented |
-| 📊 Prometheus Metrics + Observability | ✅ Implemented |
-| ⭐ Recruiting Intelligence Panel | 🔧 UI scaffold |
-| 📈 Trending Fan Topics Dashboard | 🔧 UI scaffold |
-| 🔐 Auth + User Profiles | 🗓 Planned |
-| 📱 Mobile App (React Native) | 🗓 Planned |
+The platform splits operations across an event-driven system architecture to eliminate thread-starvation issues under scale.
+
+* **Non-Blocking Core:** Built on top of Python's raw `asyncio` streams API, replacing slow multi-threaded overhead with a high-performance single-threaded asynchronous engine.
+* **Structured Serialization Protocol:** Completely dropped plaintext string messaging in favor of structured JSON payloads, allowing for strict validation boundaries and predictable message framing.
+* **Rootless Isolation Security:** Containers are structurally hardened using explicit multi-stage build patterns, forcing runtime scripts to execute via a dedicated unprivileged user group (`apprunner`).
 
 ---
 
+## 🚀 Getting Started
 
-## Architecture
+### Prerequisites
+* Python 3.11 or higher
+* Docker (Optional, for containerized isolation)
 
-```mermaid
-flowchart TD
-    A[User] --> B[Next.js Frontend]
-    B --> C[FastAPI Backend]
-    C --> D[LangGraph Orchestrator]
+### Standard Local Setup
 
-    D --> E[Qdrant Vector DB]
-    D --> F[Cohere Embeddings]
-    D --> G[Groq LLM]
+1.  **Clone the Repository:**
+    ```bash
+    git clone [https://github.com/Trojan3877/TrojanChat.git](https://github.com/Trojan3877/TrojanChat.git)
+    cd TrojanChat
+    ```
 
-    E --> D
-    F --> D
-    G --> D
+2.  **Initialize Environment & Dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-    D --> C
-    C --> B
-```
+3.  **Spin Up the Core Infrastructure Engine:**
+    ```bash
+    python server.py
+    ```
 
-See [ARCHITECTURE.md](ARCHITECTURE.md) for a detailed breakdown and [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md) for scalability decisions.
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| **Frontend** | Next.js 14, TypeScript |
-| **Backend** | FastAPI, Python 3.12 |
-| **AI / LLM** | Groq (inference), Cohere (embeddings) |
-| **Orchestration** | LangGraph |
-| **Vector DB** | Qdrant |
-| **Caching** | Redis (inference cache) |
-| **Observability** | Prometheus metrics |
-| **DevOps** | Docker, GitHub Actions CI/CD |
+4.  **Connect Distributed Clients (In separate terminals):**
+    ```bash
+    python client.py "Corey"
+    ```
 
 ---
 
-## Metrics
+## 🐳 Production Container Deployment
 
-| Metric | Value | Notes |
-|---|---|---|
-| Avg Response Latency | ~1.2 s | End-to-end, including retrieval |
-| Retrieval Top-K Accuracy | ~85% | Cosine similarity, top-3 docs |
-| API Uptime | 99% | Measured on Render free tier |
-| Max Throughput | 500 req/min | Single FastAPI instance |
-| Indexed Documents | 1,000+ | USC football knowledge base |
+This repository uses a defensive multi-stage `Dockerfile` compilation sandbox strategy. The container compiles system wheels in Stage 1, then ports the output to a stripped runtime image to dramatically shrink attack vectors and exploit spaces.
 
-See [METRICS.md](Metrics.MD) for full observability details.
+Q1: Why use an Asynchronous Event Loop (asyncio) instead of traditional Multi-threading?
+A: Multi-threaded architectures assign a dedicated operating system thread to every single connected client socket. When scaling up to thousands of concurrent users, this model hits a bottleneck due to extreme RAM consumption (each thread pre-allocates stack memory) and massive CPU overhead caused by continuous thread context-switching.
 
----
+TrojanChat uses a single-threaded asynchronous event loop via asyncio. It utilizes multiplexed, non-blocking I/O system calls underneath the hood. When a socket is waiting for network data packets to arrive, it yields control back to the central event loop, enabling a single thread to smoothly manage thousands of active user data streams without breaking a sweat.
 
-## Quick Start
+Q2: How does the application prevent data injection or cross-site script (XSS) delivery?
+A: The platform implements defensive validation boundaries right at the ingestion layer:
 
-### 1. Clone the repo
+Structural Enforcement: The backend drops raw plaintext and forces strict JSON layout checks. If a packet cannot be parsed into our target schema via json.loads(), it triggers a localized exception and drops the packet instantly.
 
+Type Enforcement & Whitespace Trimming: The server extracts keys explicitly, forces type constraints, and trims down text fields via .strip().
+
+Escaping Responsibilities: While basic script payloads are safely contained as text strings within the backend data stream, frontend interfaces reading from the stream treat the message string as immutable raw text rather than executable markup code, eliminating downstream script execution hazards.
+
+Q3: What happens when a network connection suddenly drops or behaves erratically?
+A: Traditional systems can suffer from socket resource leaks or frozen application states if a client drops offline abruptly. TrojanChat manages this through isolated, defensive write boundaries (_safe_write).
+
+If a data write fails or throws an unhandled socket error, the server intercepts the exception immediately, bypasses global runtime crashes, purges that specific client's memory address pointer from the central tracking array (self.active_connections), and formally closes the socket file descriptor to prevent kernel-level file descriptor resource exhaustion.
+
+Q4: How can this application scale horizontally to support millions of concurrent users across multiple regions?
+A: Currently, the active connection mapping exists locally within the server's process memory space (self.active_connections). To scale horizontally across multiple cloud instances or Kubernetes clusters behind a global load balancer, the in-memory array can be supplemented with an external Redis Pub/Sub broker.
+
+When Instance A receives a chat payload from an active socket, it publishes that JSON payload to a central Redis cluster topic. All other running application instances subscribing to that Redis topic pick up the message and broadcast it out concurrently to their own locally connected client pools.
+
+### Building the Image
 ```bash
-git clone https://github.com/Trojan3877/TrojanChat.git
-cd TrojanChat
-```
-
-### 2. Set up environment variables
-
-```bash
-cp .env.example .env
-# Fill in GROQ_API_KEY, COHERE_API_KEY, etc.
-```
-
-### 3. Start the backend
-
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
-
-### 4. Start the frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-### 5. Start Qdrant (Docker)
-
-```bash
-docker-compose up
-```
-
-### Environment Variables (`.env`)
-
-```env
-GROQ_API_KEY=your_key
-COHERE_API_KEY=your_key
-QDRANT_HOST=localhost
-QDRANT_PORT=6333
-REDIS_URL=redis://localhost:6379
-```
-
----
-
-## Example Prompts
-
-```
-Summarize USC recruiting momentum this week.
-Give me a preview of the next USC game.
-Who are the biggest roster strengths right now?
-```
-
----
-
-## Project Structure
-
-```
-TrojanChat/
-├── frontend/            # Next.js 14 UI (TypeScript)
-│   ├── app/             # App router pages and layout
-│   ├── components/      # ChatWindow, PromptBox, Sidebar, panels
-│   └── lib/             # API client
-├── backend/             # FastAPI application
-│   ├── api.py           # App factory
-│   ├── config.py        # Centralized settings
-│   ├── routes/          # HTTP and WebSocket routes
-│   └── services/        # Business logic layer
-├── app/                 # Core AI application modules
-│   ├── core/            # LLM client, inference cache, metrics
-│   └── services/        # AI-aware chat service
-├── ai/                  # AI pipeline
-│   ├── graph/           # LangGraph orchestration flow
-│   ├── llm/             # Groq LLM client
-│   ├── retrieval/       # Qdrant vector search
-│   └── embeddings/      # Cohere embedding client
-├── tests/               # Pytest test suite
-├── docker-compose.yml
-├── ARCHITECTURE.md
-├── SYSTEM_DESIGN.md
-└── Metrics.MD
-```
-
----
-
-## Design Decisions
-
-### Why Groq instead of OpenAI?
-- Ultra-low inference latency (~200 ms) — critical for real-time chat
-- Cost-efficient at scale
-- Drop-in compatible with OpenAI SDK
-
-### How does the RAG pipeline work?
-1. User query is embedded via Cohere
-2. Qdrant retrieves the top-K most relevant documents
-3. Context is injected into the prompt
-4. Groq generates the final grounded response
-
-### How would you scale this?
-- Kubernetes for backend horizontal scaling
-- Redis caching to reduce redundant LLM calls (already implemented)
-- Streaming responses to reduce perceived latency
-- API rate limiting per user session
-
----
-
-## Roadmap
-
-- 🔐 Auth + User Profiles
-- ⚡ Streaming AI Responses (SSE)
-- 📊 Admin Analytics Dashboard
-- 📱 Mobile App (React Native)
-
----
-
-## License
-
-[MIT](LICENSE)
+docker build -t trojanchat:latest .
