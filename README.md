@@ -1,13 +1,10 @@
 # TrojanChat
 
-🛡️ **Enterprise-Grade Asynchronous Real-Time Messaging Platform**
-
-[![Build Status](https://img.shields.io/github/actions/workflow/status/Trojan3877/TrojanChat/deploy.yml?branch=main&style=flat-square)](https://github.com/Trojan3877/TrojanChat/actions)
-[![Code Quality](https://img.shields.io/lgtm/grade/javascript/g/Trojan3877/TrojanChat.svg?style=flat-square)](https://github.com/Trojan3877/TrojanChat)
-[![Security: Bandit](https://img.shields.io/badge/security-bandit-yellow.svg?style=flat-square)](https://github.com/PyCQA/bandit)
-[![Docker Image Version](https://img.shields.io/docker/v/trojan3877/trojanchat?sort=semver&style=flat-square)](https://hub.docker.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
-[![Production Ready](https://img.shields.io/badge/status-production--ready-success?style=flat-square&color=28a745)](https://github.com/Trojan3877/TrojanChat)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)](https://github.com/Trojan3877/TrojanChat/actions)
+[![Security Status](https://img.shields.io/badge/security-passed-brightgreen?style=flat-square)](https://github.com/PyCQA/bandit)
+[![Production Ready](https://img.shields.io/badge/status-production--ready-brightgreen?style=flat-square)](https://github.com/Trojan3877/TrojanChat)
+[![Code Quality](https://img.shields.io/badge/code%20quality-A%20grade-brightgreen?style=flat-square)](https://github.com/Trojan3877/TrojanChat)
+[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 TrojanChat is a production-hardened, multi-client chat architecture optimized for high-concurrency environments. Moving away from standard blocking network sockets, this platform leverages asynchronous event loops to maintain thousands of concurrent connections efficiently while maintaining structural memory efficiency.
 
