@@ -2,7 +2,9 @@ name: TrojanChat Tests
 
 on:
   push:
+    branches: [ main ]
   pull_request:
+    branches: [ main ]
 
 jobs:
   test:
@@ -20,9 +22,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r requirements-dev.txt
-          pip install -r backend/requirements-dev.txt
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-asyncio mock
 
       - name: Run test suite
-        run: |
-          pytest tests/ -q
+        env:
+          PYTHONPATH: .
+        run: pytest tests/ -q
