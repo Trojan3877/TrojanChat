@@ -1,77 +1,85 @@
-# ================================================
-# TrojanChat — Real-Time Terminal Client (WebSocket)
-# ================================================
-
 import asyncio
-import websockets
 import json
-import os
-from datetime import datetime
+import sys
 
-# Detect backend automatically OR use env variable
-API_HOST = os.getenv("TROJANCHAT_API_HOST", "localhost")
-WS_URL = f"ws://{API_HOST}:8000/ws/chat"
-HTTP_URL = f"http://{API_HOST}:8000"
+async def watch_for_messages(reader: asyncio.StreamReader):
+    """Listens continuously for raw data packages arriving from the backend network."""
+    try:
+        while True:
+            data = await reader.read(4096)
+            if not data:
+                print("\n[-] Connection lost. Server went offline.")
+                break
+            
+            try:
+                payload = json.loads(data.decode('utf-8'))
+                # Redraw line buffers to prevent incoming traffic from overwriting user typing inputs
+                print(f"\n[{payload.get('user')}] -> {payload.get('text')}")
+                print("Your message: ", end="", flush=True)
+            except json.JSONDecodeError:
+                pass
+    except asyncio.CancelledError:
+        pass
 
-# Format chat messages for display
-def format_message(msg):
-    timestamp = msg["timestamp"].replace("T", " ").split(".")[0]
-    return f"[{timestamp}] {msg['username']}: {msg['content']}"
+async def send_messages(writer: asyncio.StreamWriter, username: str):
+    """Captures standard input asynchronously and wraps strings into structured payloads."""
+    loop = asyncio.get_event_loop()
+    print("Handshake established. Enter '/exit' to drop out cleanly.")
+    print("Your message: ", end="", flush=True)
+    
+    try:
+        while True:
+            # Delegate terminal input tracking to an isolated system thread pool
+            user_input = await loop.run_in_executor(None, sys.stdin.readline)
+            cleaned_text = user_input.strip()
+            
+            if not cleaned_text:
+                print("Your message: ", end="", flush=True)
+                continue
+                
+            if cleaned_text.lower() == '/exit':
+                break
 
-
-async def receive_messages(websocket):
-    """Continuously receive messages from WebSocket."""
-    while True:
-        try:
-            data = await websocket.recv()
-            msg = json.loads(data)
-
-            print(format_message(msg))
-        except websockets.ConnectionClosedOK:
-            print("\nDisconnected from server.")
-            break
-        except Exception as e:
-            print(f"Receive error: {e}")
-            break
-
-
-async def send_messages(websocket, username):
-    """Continuously send user input as chat messages."""
-    while True:
-        try:
-            content = await asyncio.to_thread(input, "")
-            if content.strip():
-                msg = {
-                    "username": username,
-                    "content": content,
-                    "timestamp": datetime.utcnow().isoformat()
-                }
-                await websocket.send(json.dumps(msg))
-        except Exception as e:
-            print(f"Send error: {e}")
-            break
-
+            message_packet = {
+                "user": username,
+                "text": cleaned_text
+            }
+            
+            writer.write(json.dumps(message_packet).encode('utf-8'))
+            await writer.drain()
+    except asyncio.CancelledError:
+        pass
+    finally:
+        writer.close()
+        await writer.wait_closed()
 
 async def main():
-    print("=== TrojanChat Terminal Client (Real-Time) ===")
-    username = input("Enter username: ").strip()
+    # Fall back safely if entry arguments aren't specified during execution initialization
+    username = sys.argv[1] if len(sys.argv) > 1 else input("Choose your chat handle: ").strip() or "Anonymous"
+    
+    SERVER_IP = "127.0.0.1"
+    SERVER_PORT = 8888
 
-    if not username:
-        print("Username cannot be empty.")
-        return
-
-    async with websockets.connect(WS_URL) as websocket:
-        print("\nConnected! You can now chat in real time.\n")
-
-        # Launch both tasks: listening + sending
-        await asyncio.gather(
-            receive_messages(websocket),
-            send_messages(websocket, username)
+    try:
+        reader, writer = await asyncio.open_connection(SERVER_IP, SERVER_PORT)
+        
+        # Concurrently schedule standard input loops alongside socket read loops
+        receive_task = asyncio.create_task(watch_for_messages(reader))
+        send_task = asyncio.create_task(send_messages(writer, username))
+        
+        done, pending = await asyncio.wait(
+            [receive_task, send_task],
+            return_when=asyncio.FIRST_COMPLETED
         )
-
+        
+        for task in pending:
+            task.cancel()
+            
+    except ConnectionRefusedError:
+        print(f"[-] Network Error: Connection refused at socket endpoint address {SERVER_IP}:{SERVER_PORT}")
 
 if __name__ == "__main__":
     try:
         asyncio.run(main())
     except KeyboardInterrupt:
-        print("\nExiting TrojanChat...")
+        print("\nExiting chat terminal client.")
