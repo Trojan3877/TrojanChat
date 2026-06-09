@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.app.api.chat import router as chat_router
+from app.api.chat import router as chat_router
 
 # --------------------------------------------------
 # App Initialization
@@ -9,7 +9,7 @@ from backend.app.api.chat import router as chat_router
 app = FastAPI(
     title="TrojanChat 2.0 AI",
     description="AI-powered USC fan chat platform with RAG and real-time insights",
-    version="1.0.0",
+    version="2.0.0",
 )
 
 # --------------------------------------------------
@@ -17,7 +17,7 @@ app = FastAPI(
 # --------------------------------------------------
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Restrict to your frontend domain in production
+    allow_origins=["*"],  # restrict to your frontend domain in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -27,19 +27,23 @@ app.add_middleware(
 app.include_router(chat_router, prefix="/api/chat", tags=["AI Chat"])
 
 # --------------------------------------------------
-# Root Endpoint
+# Routers
+# --------------------------------------------------
+app.include_router(chat_router, prefix="/api/chat", tags=["Chat"])
+
+
+# --------------------------------------------------
+# Health Endpoints
 # --------------------------------------------------
 @app.get("/", tags=["Health"])
 async def root():
     return {
-        "message": "TrojanChat 2.0 AI is running 🚀",
+        "message": "TrojanChat 2.0 AI is running",
         "status": "healthy",
+        "version": "2.0.0",
     }
 
 
-# --------------------------------------------------
-# Health Check Endpoint
-# --------------------------------------------------
 @app.get("/health", tags=["Health"])
 async def health_check():
     return {

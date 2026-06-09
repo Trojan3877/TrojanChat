@@ -40,6 +40,7 @@ yarn-debug.log*
 yarn-error.log*
 .next/
 next-env.d.ts
+package-lock.json
 
 # --- Build / Dist ---
 build/

@@ -1,6 +1,6 @@
 # 🚀 TrojanChat Deployment Guide
 
-This document explains how to deploy TrojanChat locally, on Render, and with NVIDIA GPU acceleration for AI workloads.
+This document covers local development, Docker, Render cloud deployment, and optional GPU acceleration.
 
 ---
 
@@ -10,70 +10,111 @@ TrojanChat is designed to be:
 - Containerized with Docker
 - Cloud-deployable on Render
 - GPU-accelerated via NVIDIA CUDA (optional)
-- Scalable with stateless API design
+- Scalable with a stateless API design
 
 ---
 
-## 🖥️ Local Development (CPU)
+## 🖥️ Local Development
 
 ### Requirements
-- Python 3.10+
-- Docker (optional)
-- Git
+
+- Python 3.12+
+- Node.js 18+
+- Docker (for Qdrant + Redis)
 
 ### Steps
+
 ```bash
 git clone https://github.com/Trojan3877/TrojanChat.git
 cd TrojanChat
+cp .env.example .env
+# Edit .env with your API keys
+
+# Start Qdrant + Redis
+docker-compose up -d
+
+# Backend
+cd backend
 pip install -r requirements.txt
-python main.py
+uvicorn api:app --reload --port 8000
 
-🐳 Docker Deployment
-Build Image
+# Frontend (new terminal)
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## 🐳 Docker Deployment
+
+### Build image
+
+```bash
 docker build -t trojanchat .
+```
 
-Run Container
-docker run -p 8000:8000 trojanchat
+### Run container
 
-☁️ Render Deployment (Production)
-1️⃣ Create Render Web Service
+```bash
+docker run -p 8000:8000 --env-file .env trojanchat
+```
 
-Runtime: Docker
+---
 
-Branch: main
+## ☁️ Render Deployment (Production)
 
-Region: Oregon (recommended)
+### 1. Create a Render Web Service
 
-Instance Type: Starter or Standard
+- **Runtime**: Docker
+- **Branch**: `main`
+- **Region**: Oregon (recommended)
+- **Instance Type**: Starter or Standard
 
-2️⃣ Environment Variables
+### 2. Set Environment Variables
 
-Set in Render dashboard:
+In the Render dashboard, add:
 
+```
 PORT=8000
-ENV=production
-JWT_SECRET=your-secret-key
+GROQ_API_KEY=...
+COHERE_API_KEY=...
+QDRANT_HOST=...
+QDRANT_PORT=6333
+REDIS_URL=...
+```
 
-⚡ NVIDIA CUDA (GPU Acceleration)
+---
 
-TrojanChat supports GPU acceleration for AI inference.
+## ⚡ NVIDIA CUDA (GPU Acceleration)
 
-Requirements
+TrojanChat supports GPU acceleration for local AI inference workloads.
 
-NVIDIA GPU (RTX 30xx+ recommended)
+### Requirements
 
-NVIDIA Container Toolkit
+- NVIDIA GPU (RTX 30xx+ recommended)
+- NVIDIA Container Toolkit
 
-Build GPU Image
-docker build -f Dockerfile.cuda -t trojanchat-gpu .
+### Build GPU image
 
-Run with GPU
-docker run --gpus all -p 8000:8000 trojanchat-gpu
+```bash
+docker build -f DockerFile.cuda -t trojanchat-gpu .
+```
 
-📊 Monitoring & Logs
+### Run with GPU
 
-Render dashboard logs
+```bash
+docker run --gpus all -p 8000:8000 --env-file .env trojanchat-gpu
+```
 
-Docker logs:
+---
 
+## 📊 Monitoring & Logs
+
+```bash
+# Docker logs
 docker logs <container_id>
+
+# Prometheus metrics (when running)
+curl http://localhost:8000/metrics
+```

@@ -1,47 +1,75 @@
-# 🛠️ TrojanChat – Tech Stack Overview
+# 🛠️ TrojanChat – Tech Stack
 
-This document outlines the technologies and tools used in the design and development of the TrojanChat application, as well as technologies planned for future integration.
-
----
-
-## 💻 Core Development
-
-| Technology     | Purpose                                  |
-|----------------|------------------------------------------|
-| C++            | Core application logic and structure     |
-| OOP Principles | Modular class-based architecture         |
-| Makefile       | (Optional) Compilation management        |
-| Git & GitHub   | Version control and source collaboration |
+This document outlines the technologies powering TrojanChat 2.0 AI.
 
 ---
 
-## 📁 Project Architecture
+## 🖥️ Frontend
 
-- `src/`: Contains all C++ logic files and class definitions
-- `data/`: Stores chat history and saved session data (File I/O)
-- `docs/`: System diagrams and development documentation
-
----
-
-## 🔄 Future Integration Plans
-
-| Technology       | Purpose                                      |
-|------------------|----------------------------------------------|
-| Firebase Realtime DB | Cloud-based chat message storage         |
-| Android/iOS App  | Mobile access to chatrooms                   |
-| Web Frontend (React) | UI for web-based users (Phase 3)         |
-| Google Auth or OAuth | Secure user login system                 |
+| Technology | Purpose |
+|---|---|
+| Next.js 14 | React framework with App Router |
+| TypeScript | Type-safe component development |
+| CSS-in-JS (inline styles) | Scoped UI styling |
 
 ---
 
-## 🔐 Security Considerations
+## ⚙️ Backend
 
-- Admin roles will include moderation controls
-- Future updates will incorporate authentication & message validation
-- User flagging system planned for abuse prevention
+| Technology | Purpose |
+|---|---|
+| FastAPI | Async REST API + WebSocket support |
+| Python 3.12 | Runtime |
+| Pydantic v2 | Request/response schema validation |
+| Uvicorn | ASGI server |
 
 ---
 
-## 🧠 Developer Notes
+## 🧠 AI / ML
 
-This app is currently in terminal-only mode and simulates multi-user chat interaction using object-oriented design in C++. All messages are saved locally in `.txt` files for now but are structured in a way that can easily map to JSON or cloud databases for future upgrades.
+| Technology | Purpose |
+|---|---|
+| Groq | Ultra-low-latency LLM inference |
+| Cohere | Text embeddings for semantic search |
+| LangGraph | RAG workflow orchestration |
+| Qdrant | Vector database for document retrieval |
+
+---
+
+## 💾 Data & Caching
+
+| Technology | Purpose |
+|---|---|
+| Redis | Inference result caching (fail-open) |
+| In-memory store | Chat message history (dev mode) |
+
+---
+
+## 📊 Observability
+
+| Technology | Purpose |
+|---|---|
+| Prometheus (prometheus-client) | API latency, cache hit/miss metrics |
+| Structured logging | JSON logs via Python `logging` |
+
+---
+
+## 🐳 DevOps
+
+| Technology | Purpose |
+|---|---|
+| Docker | Containerized local and production deployments |
+| Docker Compose | Multi-service orchestration (API + Qdrant + Redis) |
+| GitHub Actions | CI/CD — lint, test, build on every push |
+| Render | Cloud deployment target |
+
+---
+
+## 🗓️ Planned Additions
+
+| Technology | Purpose |
+|---|---|
+| JWT / OAuth | User authentication |
+| React Native | Cross-platform mobile app |
+| Server-Sent Events | Streaming AI responses |
+| PostgreSQL | Persistent chat history |
