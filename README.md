@@ -50,6 +50,13 @@ The platform splits operations across an event-driven system architecture to eli
     python client.py "Corey"
     ```
 
+
+ Engineering Roadmap
+* [ ] **TLS/SSL Implementation:** Wrap connection initializations inside native `ssl.SSLContext` primitives to enforce data encryption in transit.
+* [ ] **Horizontal Scale Broker:** Integrate a Redis Pub/Sub backplane layer to cleanly sync chat messages across multi-container instances.
+* [ ] **Unit Test Suite:** Build comprehensive `pytest-asyncio` coverage to automatically validate connection handshakes and packet boundaries during CI/CD triggers.
+    
+
 Q1: Why use an Asynchronous Event Loop (asyncio) instead of traditional Multi-threading?
 A: Multi-threaded architectures assign a dedicated operating system thread to every single connected client socket. When scaling up to thousands of concurrent users, this model hits a bottleneck due to extreme RAM consumption (each thread pre-allocates stack memory) and massive CPU overhead caused by continuous thread context-switching.
 
