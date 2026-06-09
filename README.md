@@ -1,10 +1,11 @@
 # TrojanChat
-
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)](https://github.com/Trojan3877/TrojanChat/actions)
 [![Security Status](https://img.shields.io/badge/security-passed-brightgreen?style=flat-square)](https://github.com/PyCQA/bandit)
 [![Production Ready](https://img.shields.io/badge/status-production--ready-brightgreen?style=flat-square)](https://github.com/Trojan3877/TrojanChat)
-[![Code Quality](https://img.shields.io/badge/code%20quality-A%20grade-brightgreen?style=flat-square)](https://github.com/Trojan3877/TrojanChat)
-[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
+[![Platform Support](https://img.shields.io/badge/platform-linux%20%7C%20macos%20%7C%20windows-blue?style=flat-square)](https://github.com/Trojan3877/TrojanChat)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+
 
 TrojanChat is a production-hardened, multi-client chat architecture optimized for high-concurrency environments. Moving away from standard blocking network sockets, this platform leverages asynchronous event loops to maintain thousands of concurrent connections efficiently while maintaining structural memory efficiency.
 
