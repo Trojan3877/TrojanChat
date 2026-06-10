@@ -1,5 +1,11 @@
 """Tests for the FastAPI app: chat endpoint, health check, and structured JSON."""
+import os
+import sys
+# Dynamically add the project root directory to the python path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+# Your existing imports continue below...
+from app.core.main import app
 import pytest
 from httpx import AsyncClient, ASGITransport
 
